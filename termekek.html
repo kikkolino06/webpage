@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webshop – Aranykapu Zenekar Webshop</title>
+  <meta name="description" content="Az Aranykapu Zenekar összes terméke: könyvek, CD-k, ajándékok és belépőjegyek.">
+  <meta name="theme-color" content="#f9a9f5">
+  <link rel="icon" href="assets/img/cropped-site-logo.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Caveat:wght@600;700&family=Oxygen:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="shop">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Morzsamenü"><a href="index.html">Főoldal</a> / <span id="shop-crumb">Összes termék</span></nav>
+        <h1 class="display" id="shop-title"></h1>
+      </div>
+    </section>
+    <div class="stripes" aria-hidden="true"></div>
+    <section class="section" style="padding-top:48px">
+      <div class="wrap">
+        <div class="toolbar">
+          <nav class="chips" id="shop-chips" aria-label="Kategóriák"></nav>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span id="shop-count" style="font-size:14px;color:var(--gray)"></span>
+            <label class="sr-only" for="shop-sort">Rendezés</label>
+            <select class="select" id="shop-sort">
+              <option value="">Alapértelmezett rendezés</option>
+              <option value="date">Dátum szerint</option>
+              <option value="asc">Ár szerint növekvő</option>
+              <option value="desc">Ár szerint csökkenő</option>
+              <option value="stock">Raktáron lévők elöl</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid" id="shop-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

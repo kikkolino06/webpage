@@ -1,6 +1,6 @@
-# webpage
+# kikkolino
 
-Egyoldalas, reszponzív bemutatkozó weboldal (HTML + CSS + JavaScript, build lépés nélkül).
+kikkolino hip-hop és trap producer weboldala: filmszerű, görgetésre animált egyoldalas oldal (HTML + CSS + JavaScript, build lépés és külső könyvtár nélkül).
 
 ## Megnyitás
 
@@ -10,16 +10,22 @@ Nyisd meg az `index.html` fájlt böngészőben, vagy indíts egy helyi szervert
 python3 -m http.server 8000
 ```
 
-## Funkciók
+## Részek
 
-Filmszerű, görgetésre animált oldal (külső könyvtár nélkül, saját görgetésvezérlővel):
+- **Hero:** éjszakai városkép, ami görgetésre lüktető, drótvázas tájjá oldódik
+- **Rólam:** 16 lépéses szekvenszer-rács, majd felcsúszó fehér panel szavanként előtűnő szöveggel
+- **Folyamat:** izometrikus stúdiópult (padek, potméterek, faderek), „render → drótváz” törléssel
+- **K S 8 → Kick Snare 808** betűanimáció
+- **Szolgáltatások:** vízszintesen gördülő kártyák felcsúszó hangfalrács-ajtókkal
+- **Zene:** forgó bakelit spektrummal és platformlinkekkel
+- **Booking:** űrlap, ami kitöltve megnyitja a levelezőt az előre megírt üzenettel
 
-- Lebegő, átlátszó navigáció, amely a szekció színéhez igazodik
-- Hero: naplemente, amely görgetésre drótvázas tájjá oldódik, betűnként előtűnő címekkel
-- Sötét, villódzó rács, majd felcsúszó fehér panel szavanként megjelenő szöveggel
-- Folyamat: izometrikus blokkok, „fotó → drótváz” törléses átmenettel
-- Betűszó-animáció: M W S → Modern Web Stúdió
-- Vízszintesen görgethető szolgáltatás-kártyák felnyíló ajtókkal
-- Forgó földgömb lime ívekkel és számlálókkal
-- Kapcsolati űrlap kliensoldali ellenőrzéssel
-- Mobilra optimalizálva, `prefers-reduced-motion` támogatással
+## Beat
+
+A „Beat indítása” gomb egy kódból generált (Web Audio), 140 BPM-es trap loopot játszik: 808, snare, hi-hat rollok és csengő dallam. A vizuális elemek a kickre lüktetnek.
+
+## Testreszabás
+
+- E-mail-cím: `index.html` → `booking@kikkolino.hu` (az űrlap is ide küld)
+- Platformlinkek (Spotify, YouTube, SoundCloud, Instagram): `index.html`, a `#zene` szekcióban a `href="#"` értékek
+- Beat mintázat és tempó: `script.js` → `BPM` és `pattern`

@@ -81,6 +81,18 @@ canvas { display: block; }
 }
 .nav__cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(198, 255, 61, 0.35); }
 .nav__menu { display: none; }
+.nav__play {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  margin-right: -18px;
+}
+.nav.is-light .nav__play { background: rgba(0, 0, 0, 0.08); }
 
 /* Görgetési jelenetek: a .stage rátapad a képernyőre, a szekció magassága adja a hosszt */
 .scene { position: relative; }
@@ -111,28 +123,24 @@ canvas { display: block; }
 .hero__photo {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #1d2b4a 0%, #4a4a6e 26%, #b9707a 44%, #f2a65e 54%, #ffd27f 58%, #3b2a2f 58.2%);
+  background: linear-gradient(180deg, #04040a 0%, #0f0a26 28%, #2a0f45 46%, #6b1a5c 56%, #c23a6e 61%, #1a0d1c 61.2%);
   opacity: var(--photo, 1);
   transform: scale(calc(1 + var(--zoom, 0) * 0.25));
   filter: blur(calc(var(--zoom, 0) * 6px)) saturate(calc(1 - var(--zoom, 0) * 0.6));
   will-change: transform, opacity, filter;
 }
-.hero__sun {
+.hero__moon {
   position: absolute;
-  left: 62%;
-  top: 46%;
-  width: 22vmin;
-  height: 22vmin;
+  right: 18%;
+  top: 16%;
+  width: 9vmin;
+  height: 9vmin;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, #fff7d6 0%, #ffe39a 35%, rgba(255, 190, 110, 0.6) 55%, transparent 72%);
-  filter: blur(2px);
+  background: radial-gradient(circle at 35% 35%, #fff, #e9e4ff 45%, #b9b0e6);
+  box-shadow: 0 0 60px 20px rgba(200, 180, 255, 0.25);
 }
-.hero__hills { position: absolute; left: 0; bottom: 30%; width: 100%; height: 34%; }
-.hero__hills .h1 { fill: #6b4a63; opacity: 0.75; }
-.hero__hills .h2 { fill: #4a3346; }
-.hero__hills .h3 { fill: #2b1e28; }
-.hero__ground { position: absolute; left: 0; right: 0; bottom: 0; height: 31%; background: linear-gradient(180deg, #2b1e28, #120d12); }
+.hero__city { position: absolute; left: 0; bottom: 38.8%; width: 100%; height: 36%; }
+.hero__ground { position: absolute; left: 0; right: 0; bottom: 0; height: 39%; background: linear-gradient(180deg, #1a0d1c, #07050a); }
 .hero__wire { position: absolute; inset: 0; width: 100%; height: 100%; }
 .hero__vignette {
   position: absolute;
@@ -150,13 +158,46 @@ canvas { display: block; }
   max-width: 14ch;
   text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
   opacity: var(--o, 1);
-  transform: translateY(calc((1 - var(--o, 1)) * -40px));
+  transform: translateY(calc((1 - var(--o, 1)) * -40px)) scale(calc(1 + var(--k, 0) * 0.03));
 }
-.hero__scroll {
+.title--name { font-size: clamp(3.4rem, 15vw, 13rem); font-weight: 500; letter-spacing: -0.06em; max-width: none; }
+.hero__bottom {
   position: absolute;
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  opacity: var(--o, 1);
+  pointer-events: var(--pe, auto);
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 10px 18px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.2s, border-color 0.2s;
+}
+.pill:hover { background: rgba(255, 255, 255, 0.14); }
+.pill[aria-pressed="true"] { border-color: var(--lime); }
+.eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; }
+.eq i { width: 3px; height: 4px; background: var(--lime); border-radius: 1px; }
+.is-playing .eq i { animation: eq 0.43s ease-in-out infinite alternate; }
+.is-playing .eq i:nth-child(2) { animation-delay: -0.2s; }
+.is-playing .eq i:nth-child(3) { animation-delay: -0.31s; }
+@keyframes eq { from { height: 3px; } to { height: 12px; } }
+.hero__scroll {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -165,7 +206,6 @@ canvas { display: block; }
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  opacity: var(--o, 1);
 }
 .hero__scroll span { width: 1px; height: 40px; background: linear-gradient(var(--lime), transparent); animation: drip 2s ease-in-out infinite; transform-origin: top; }
 @keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
@@ -235,9 +275,9 @@ canvas { display: block; }
   height: min(78vh, 720px);
   border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(160deg, #f4c79a, #d98a55 55%, #7b4a35);
+  background: radial-gradient(ellipse at 50% 30%, #4a2a6b, #1c1029 60%, #0c0812);
   transform: translateX(calc((1 - var(--in, 0)) * 110%));
-  box-shadow: 0 30px 80px rgba(60, 30, 10, 0.25);
+  box-shadow: 0 30px 80px rgba(40, 10, 60, 0.3);
   will-change: transform;
 }
 .layer { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -284,7 +324,7 @@ canvas { display: block; }
   justify-content: center;
   flex-wrap: nowrap;
   gap: calc(0.08em + var(--s, 0) * (1 - var(--e, 0)) * 0.9em);
-  font-size: calc(min(24vw, 30vh) - (min(24vw, 30vh) - min(8vw, 11vh)) * var(--e, 0));
+  font-size: calc(min(24vw, 30vh) * (1 - var(--e, 0)) + min(8vw, 11vh) * var(--e, 0));
   font-weight: 300;
   letter-spacing: -0.04em;
   white-space: nowrap;
@@ -315,7 +355,7 @@ canvas { display: block; }
 /* 5. Szolgáltatások */
 .bays { height: 460vh; }
 .bays .stage {
-  background: linear-gradient(180deg, #2a1d1a 0%, #5a3628 45%, #a8673f 100%);
+  background: linear-gradient(180deg, #08060d 0%, #22102e 50%, #5a1534 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -342,8 +382,10 @@ canvas { display: block; }
   inset: 0;
   z-index: 2;
   background:
-    repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0 2px, transparent 2px 26px),
-    linear-gradient(180deg, #f1b47e, #c97b4b 60%, #8f5232);
+    radial-gradient(circle at 50% 42%, #0b090e 0 9%, #2a2433 10% 24%, rgba(198, 255, 61, 0.7) 24.5% 25.5%, #17131d 26% 33%, transparent 33.5%),
+    radial-gradient(circle at 50% 80%, #0b090e 0 4%, #2a2433 4.5% 9%, rgba(255, 77, 141, 0.7) 9.3% 10%, transparent 10.5%),
+    radial-gradient(circle, rgba(0, 0, 0, 0.5) 1.2px, transparent 1.7px) 0 0 / 7px 7px,
+    linear-gradient(180deg, #6a6178, #453d52 55%, #2a2433);
   box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.25);
   transform: translateY(calc(var(--open, 0) * -100%));
   transition: transform 0.15s linear;
@@ -351,25 +393,40 @@ canvas { display: block; }
 .bays__progress { margin: 0 max(4vw, 16px); height: 2px; background: rgba(255, 255, 255, 0.15); max-width: 400px; }
 .bays__progress span { display: block; height: 100%; width: 100%; background: var(--lime); transform-origin: left; transform: scaleX(var(--p, 0)); }
 
-/* 6. Földgömb */
-.globe { height: 340vh; }
-.globe .stage { background: radial-gradient(ellipse at 50% 120%, #0d1626, #03050a 70%); }
-.globe__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.globe__head { position: absolute; top: 18vh; left: max(4vw, 16px); right: 16px; opacity: var(--o, 0); transform: translateY(calc((1 - var(--o, 0)) * 30px)); }
-.globe__head h2 { font-size: clamp(2rem, 4.4vw, 4rem); max-width: 16ch; }
-.globe__stats {
+/* 6. Bakelit */
+.vinyl { height: 320vh; }
+.vinyl .stage { background: radial-gradient(ellipse at 50% 60%, #1a0f24, #050307 70%); }
+.vinyl__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.vinyl__head { position: absolute; top: 16vh; left: max(4vw, 16px); right: 16px; opacity: var(--o, 0); transform: translateY(calc((1 - var(--o, 0)) * 30px)); }
+.vinyl__head h2 { font-size: clamp(2.4rem, 6vw, 5.5rem); }
+.vinyl__links {
   position: absolute;
-  bottom: 8vh;
+  bottom: 7vh;
   left: max(4vw, 16px);
   right: max(4vw, 16px);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
   opacity: var(--o, 0);
+  transform: translateY(calc((1 - var(--o, 0)) * 30px));
+  pointer-events: var(--pe, none);
 }
-.stat { border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 14px; }
-.stat strong { display: block; font-size: clamp(2rem, 5vw, 4rem); font-weight: 300; letter-spacing: -0.04em; color: var(--lime); }
-.stat span { color: var(--muted); font-size: 0.9rem; }
+.platform {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 1.05rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.platform .mono { color: var(--muted); }
+.platform i { margin-left: auto; font-style: normal; color: var(--lime); }
+.platform:hover { background: rgba(198, 255, 61, 0.08); border-color: var(--lime); }
 
 /* 7. Vélemény */
 .quote { height: 260vh; }
@@ -394,10 +451,11 @@ canvas { display: block; }
 .contact__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; max-width: 1200px; margin: 0 auto; }
 .contact h2 { font-size: clamp(3rem, 8vw, 7rem); }
 .contact__lead { margin-top: 18px; color: var(--muted); font-size: 1.15rem; }
+.contact__info a:hover { color: var(--lime); }
 .contact__info { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 10px; color: var(--muted); }
 .form { display: grid; gap: 18px; align-content: start; }
 .form label { display: grid; gap: 8px; font-size: 0.9rem; color: var(--muted); }
-.form input, .form textarea {
+.form input, .form textarea, .form select {
   font: inherit;
   color: var(--white);
   background: transparent;
@@ -407,7 +465,8 @@ canvas { display: block; }
   resize: vertical;
   transition: border-color 0.2s;
 }
-.form input:focus, .form textarea:focus { outline: none; border-color: var(--lime); }
+.form select option { background: var(--ink); }
+.form input:focus, .form textarea:focus, .form select:focus { outline: none; border-color: var(--lime); }
 .form .is-invalid { border-color: #ff6b6b; }
 .btn {
   justify-self: start;
@@ -431,6 +490,7 @@ canvas { display: block; }
 /* Reszponzív */
 @media (max-width: 860px) {
   .nav { gap: 12px; }
+  .nav__play { margin-right: -4px; }
   .nav__links {
     position: absolute;
     top: calc(100% + 8px);
@@ -471,12 +531,12 @@ canvas { display: block; }
   .step.is-active { display: block; }
   .process__visual { height: auto; min-height: 46vh; }
   .contact__inner { grid-template-columns: 1fr; }
-  .globe__stats { grid-template-columns: 1fr; gap: 10px; bottom: 5vh; }
-  .stat { display: flex; align-items: baseline; gap: 12px; padding-top: 8px; }
+  .vinyl__links { grid-template-columns: 1fr 1fr; gap: 8px; bottom: 4vh; }
+  .platform { padding: 12px 14px; font-size: 0.95rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero__scroll span, .quote__fog { animation: none; }
+  .hero__scroll span, .quote__fog, .is-playing .eq i { animation: none; }
   .split[data-split="char"] .c { filter: none; }
 }

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Webstúdió – Modern weboldalak</title>
-  <meta name="description" content="Gyors, modern és filmszerű weboldalak tervezése és fejlesztése.">
+  <title>kikkolino – hip-hop &amp; trap producer</title>
+  <meta name="description" content="kikkolino – hip-hop és trap zenei producer. Egyedi beatek, mix &amp; master, stúdió session és booking.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,157 +12,168 @@
 </head>
 <body>
   <header class="nav" id="nav">
-    <a class="nav__logo" href="#top"><span class="nav__mark" aria-hidden="true"></span>Webstúdió</a>
+    <a class="nav__logo" href="#top"><span class="nav__mark" aria-hidden="true"></span>kikkolino</a>
     <nav class="nav__links" id="navLinks" aria-label="Fő navigáció">
+      <a href="#rolam">Rólam</a>
       <a href="#folyamat">Folyamat</a>
       <a href="#szolgaltatasok">Szolgáltatások</a>
-      <a href="#eredmenyek">Eredmények</a>
-      <a href="#kapcsolat">Kapcsolat</a>
+      <a href="#zene">Zene</a>
     </nav>
-    <a href="#kapcsolat" class="nav__cta">Ajánlatkérés</a>
+    <button class="nav__play js-play" aria-label="Beat indítása" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
+    <a href="#booking" class="nav__cta">Booking</a>
     <button class="nav__menu" id="menuToggle" aria-label="Menü" aria-expanded="false"><span></span><span></span></button>
   </header>
 
   <main>
-    <!-- 1. Hero: naplemente → drótváz -->
+    <!-- 1. Hero: éjszakai város → hullámzó drótváz -->
     <section class="scene hero" id="top" data-scene="hero" data-nav="dark">
       <div class="stage">
         <div class="hero__photo" aria-hidden="true">
-          <div class="hero__sun"></div>
-          <svg class="hero__hills" viewBox="0 0 1600 400" preserveAspectRatio="none">
-            <path class="h1" d="M0 230 L120 170 L260 210 L380 120 L520 190 L640 140 L780 200 L900 110 L1040 180 L1180 130 L1320 200 L1460 150 L1600 190 L1600 400 L0 400Z"/>
-            <path class="h2" d="M0 280 L160 230 L300 270 L460 210 L600 260 L760 230 L920 280 L1080 220 L1240 270 L1400 230 L1600 260 L1600 400 L0 400Z"/>
-            <path class="h3" d="M0 330 L200 300 L420 325 L700 290 L980 320 L1260 295 L1600 320 L1600 400 L0 400Z"/>
-          </svg>
+          <div class="hero__moon"></div>
+          <svg class="hero__city" id="skyline" viewBox="0 0 1600 400" preserveAspectRatio="none"></svg>
           <div class="hero__ground"></div>
         </div>
         <canvas class="hero__wire" id="heroCanvas" aria-hidden="true"></canvas>
         <div class="hero__vignette" aria-hidden="true"></div>
 
         <div class="hero__titles">
-          <h1 class="title split" data-split="char" id="t1">Weboldalak, amelyek működnek.</h1>
-          <p class="title split" data-split="char" id="t2">Újragondoltuk a webet,</p>
-          <p class="title split" data-split="char" id="t3">a pixeltől a kódig.</p>
+          <h1 class="title title--name split" data-split="char" id="t1">kikkolino</h1>
+          <p class="title split" data-split="char" id="t2">Hip-hop &amp; trap producer.</p>
+          <p class="title split" data-split="char" id="t3">Beatek, amik ütnek.</p>
         </div>
-        <div class="hero__scroll" id="heroScroll"><span></span>Görgess</div>
+        <div class="hero__bottom" id="heroScroll">
+          <button class="pill js-play" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="js-play-label">Beat indítása</span></button>
+          <div class="hero__scroll"><span></span>Görgess</div>
+        </div>
       </div>
     </section>
 
-    <!-- 2. Sötét rács → fehér panel szöveggel -->
-    <section class="scene manifesto" data-scene="manifesto" data-nav="dark">
+    <!-- 2. Szekvenszer-rács → fehér panel -->
+    <section class="scene manifesto" id="rolam" data-scene="manifesto" data-nav="dark">
       <div class="stage">
         <canvas class="grid-canvas" id="gridCanvas" aria-hidden="true"></canvas>
-        <p class="manifesto__kicker" id="kicker"><span class="mono">[ 01 ]</span> A jövő webje már itt van</p>
+        <p class="manifesto__kicker" id="kicker"><span class="mono">[ 01 ] Rólam</span> Minden a 808-cal kezdődik</p>
         <div class="manifesto__panel" id="panel">
           <p class="manifesto__text split" data-split="word" id="manifestoText">
-            Képzeld el a weboldalad úgy, mint egy <mark>élő rendszert</mark>, amely zökkenőmentesen köti össze az első kattintást az elégedett ügyféllel.
+            Nálam a beat nem háttérzaj, hanem <mark>az alap</mark>, amire egy egész szám épül – az első kicktől az utolsó hi-hat rollig.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 3. Folyamat: fotó → drótváz törlés -->
+    <!-- 3. Folyamat: stúdió pult, render → drótváz -->
     <section class="scene process" id="folyamat" data-scene="process" data-nav="light">
       <div class="stage">
         <div class="process__steps">
           <p class="eyebrow mono">[ 02 ] Folyamat</p>
           <ol>
-            <li class="step"><span class="mono">01</span><h3>Tervezés</h3><p>Megismerjük a céljaidat, és felvázoljuk az oldal szerkezetét és hangulatát.</p></li>
-            <li class="step"><span class="mono">02</span><h3>Fejlesztés</h3><p>A tervből gyors, tiszta kód lesz – minden eszközre optimalizálva.</p></li>
-            <li class="step"><span class="mono">03</span><h3>Indulás</h3><p>Élesítjük, mérjük és folyamatosan finomítjuk az eredményeket.</p></li>
+            <li class="step"><span class="mono">01</span><h3>Ötlet &amp; referencia</h3><p>Átbeszéljük a hangulatot, a referenciákat és azt, hogy hova szól a szám.</p></li>
+            <li class="step"><span class="mono">02</span><h3>Beat &amp; hangszerelés</h3><p>808, dobok, dallam – addig csiszolom, amíg pontosan úgy nem üt, ahogy kell.</p></li>
+            <li class="step"><span class="mono">03</span><h3>Mix &amp; master</h3><p>Tiszta, hangos, streamingre kész hangzás, minden hangszórón.</p></li>
           </ol>
         </div>
         <div class="process__visual" id="processVisual" aria-hidden="true">
           <svg class="layer layer--photo" id="isoPhoto" viewBox="0 0 600 640"></svg>
           <svg class="layer layer--wire" id="isoWire" viewBox="0 0 600 640"></svg>
           <div class="process__scan"></div>
-          <span class="process__tag mono" id="processTag">RENDER</span>
+          <span class="process__tag mono" id="processTag">STÚDIÓ</span>
         </div>
       </div>
     </section>
 
-    <!-- 4. Betűszó: M W S → Modern Web Stúdió -->
+    <!-- 4. K S 8 → Kick Snare 808 -->
     <section class="scene acro" data-scene="acro" data-nav="dark">
       <div class="stage">
         <div class="acro__grid" aria-hidden="true"></div>
-        <h2 class="acro__title" id="acro">
-          <span class="acro__word"><b>M</b><i>odern</i></span>
-          <span class="acro__word"><b>W</b><i>eb</i></span>
-          <span class="acro__word"><b>S</b><i>túdió</i></span>
+        <h2 class="acro__title" id="acro" aria-label="Kick, Snare, 808">
+          <span class="acro__word"><b>K</b><i>ick</i></span>
+          <span class="acro__word"><b>S</b><i>nare</i></span>
+          <span class="acro__word"><b>8</b><i>08</i></span>
         </h2>
-        <p class="acro__sub" id="acroSub">Egy csapat, amely a dizájnt, a kódot és a növekedést egyetlen rendszerként kezeli.</p>
+        <p class="acro__sub" id="acroSub">Ebből a háromból épül fel minden szám. A többit a te hangod teszi hozzá.</p>
       </div>
     </section>
 
-    <!-- 5. Szolgáltatások: vízszintes görgetés -->
+    <!-- 5. Szolgáltatások vízszintesen -->
     <section class="scene bays" id="szolgaltatasok" data-scene="bays" data-nav="dark">
       <div class="stage">
         <div class="bays__head">
           <p class="eyebrow mono">[ 03 ] Szolgáltatások</p>
-          <h2>Minden, ami egy erős online jelenléthez kell</h2>
+          <h2>Amiben számíthatsz rám</h2>
         </div>
         <div class="bays__track" id="baysTrack">
-          <article class="bay"><span class="bay__num mono">01</span><div class="bay__inner"><h3>Webdesign</h3><p>Letisztult, márkához illő felületek, amelyek minden képernyőn működnek.</p></div><div class="bay__door"></div></article>
-          <article class="bay"><span class="bay__num mono">02</span><div class="bay__inner"><h3>Fejlesztés</h3><p>Modern technológiákkal épített, villámgyors és biztonságos oldalak.</p></div><div class="bay__door"></div></article>
-          <article class="bay"><span class="bay__num mono">03</span><div class="bay__inner"><h3>Webshop</h3><p>Online áruházak egyszerű kezeléssel és megbízható fizetéssel.</p></div><div class="bay__door"></div></article>
-          <article class="bay"><span class="bay__num mono">04</span><div class="bay__inner"><h3>Animáció</h3><p>Görgetésre reagáló, filmszerű élmények, amelyekre emlékeznek.</p></div><div class="bay__door"></div></article>
-          <article class="bay"><span class="bay__num mono">05</span><div class="bay__inner"><h3>SEO</h3><p>Hogy megtaláljanak: technikai és tartalmi keresőoptimalizálás.</p></div><div class="bay__door"></div></article>
-          <article class="bay"><span class="bay__num mono">06</span><div class="bay__inner"><h3>Üzemeltetés</h3><p>Tárhely, frissítések és felügyelet – nem tűnünk el az átadás után.</p></div><div class="bay__door"></div></article>
+          <article class="bay"><span class="bay__num mono">01</span><div class="bay__inner"><h3>Egyedi beat</h3><p>A nulláról, a te hangodra és stílusodra szabva.</p></div><div class="bay__door"></div></article>
+          <article class="bay"><span class="bay__num mono">02</span><div class="bay__inner"><h3>Exkluzív jogok</h3><p>A beat csak a tiéd – kiadhatod, monetizálhatod.</p></div><div class="bay__door"></div></article>
+          <article class="bay"><span class="bay__num mono">03</span><div class="bay__inner"><h3>Mix &amp; master</h3><p>Ének és beat egy tiszta, ütős egésszé csiszolva.</p></div><div class="bay__door"></div></article>
+          <article class="bay"><span class="bay__num mono">04</span><div class="bay__inner"><h3>Hangszerelés</h3><p>Demóból kész szám: dobok, 808, dallamok, átvezetések.</p></div><div class="bay__door"></div></article>
+          <article class="bay"><span class="bay__num mono">05</span><div class="bay__inner"><h3>Stúdió session</h3><p>Közös munka élőben – felvétel, ötletelés, finomhangolás.</p></div><div class="bay__door"></div></article>
+          <article class="bay"><span class="bay__num mono">06</span><div class="bay__inner"><h3>Booking</h3><p>Producer szett, fellépés, workshop – írj a részletekkel.</p></div><div class="bay__door"></div></article>
         </div>
         <div class="bays__progress" aria-hidden="true"><span id="baysBar"></span></div>
       </div>
     </section>
 
-    <!-- 6. Földgömb + számok -->
-    <section class="scene globe" id="eredmenyek" data-scene="globe" data-nav="dark">
+    <!-- 6. Bakelit + spektrum -->
+    <section class="scene vinyl" id="zene" data-scene="vinyl" data-nav="dark">
       <div class="stage">
-        <canvas class="globe__canvas" id="globeCanvas" aria-hidden="true"></canvas>
-        <div class="globe__head" id="globeHead">
-          <p class="eyebrow mono">[ 04 ] Eredmények</p>
-          <h2>Ügyfeleink az egész országban – és azon túl</h2>
+        <canvas class="vinyl__canvas" id="vinylCanvas" aria-hidden="true"></canvas>
+        <div class="vinyl__head" id="vinylHead">
+          <p class="eyebrow mono">[ 04 ] Zene</p>
+          <h2>Hallgass bele</h2>
         </div>
-        <div class="globe__stats" id="globeStats">
-          <div class="stat"><strong data-count="120" data-suffix="+">0</strong><span>elkészült projekt</span></div>
-          <div class="stat"><strong data-count="98" data-suffix="%">0</strong><span>elégedett ügyfél</span></div>
-          <div class="stat"><strong data-count="8" data-suffix=" év">0</strong><span>tapasztalat</span></div>
+        <div class="vinyl__links" id="vinylLinks">
+          <a href="#" class="platform"><span class="mono">01</span>Spotify<i>↗</i></a>
+          <a href="#" class="platform"><span class="mono">02</span>YouTube<i>↗</i></a>
+          <a href="#" class="platform"><span class="mono">03</span>SoundCloud<i>↗</i></a>
+          <a href="#" class="platform"><span class="mono">04</span>Instagram<i>↗</i></a>
         </div>
       </div>
     </section>
 
-    <!-- 7. Vélemény -->
+    <!-- 7. Idézet -->
     <section class="scene quote" data-scene="quote" data-nav="dark">
       <div class="stage">
         <div class="quote__fog" aria-hidden="true"></div>
         <figure class="quote__body">
-          <blockquote class="split" data-split="word" id="quoteText">„Még soha nem láttunk ilyen gondosságot egy webes projektben. Az új oldal fontos mérföldkő volt a cégünk digitális fejlődésében.”</blockquote>
-          <figcaption id="quoteBy">Kovács Anna <span>· ügyvezető, Kávé &amp; Társa</span></figcaption>
+          <blockquote class="split" data-split="word" id="quoteText">„Nem csak beatet készítek. Hangulatot, amibe bele lehet lépni – és amiből egy igazi szám lesz.”</blockquote>
+          <figcaption id="quoteBy">kikkolino <span>· producer</span></figcaption>
         </figure>
       </div>
     </section>
 
-    <!-- 8. Kapcsolat -->
-    <section class="contact" id="kapcsolat" data-nav="dark">
+    <!-- 8. Booking -->
+    <section class="contact" id="booking" data-nav="dark">
       <div class="contact__inner">
         <div>
-          <p class="eyebrow mono">[ 05 ] Kapcsolat</p>
-          <h2>Kezdjük el?</h2>
-          <p class="contact__lead">Írj nekünk, és 24 órán belül válaszolunk.</p>
+          <p class="eyebrow mono">[ 05 ] Booking</p>
+          <h2>Dolgozzunk együtt.</h2>
+          <p class="contact__lead">Egyedi beat, mix &amp; master, stúdió session vagy fellépés – írj, és hamar válaszolok.</p>
           <ul class="contact__info mono">
-            <li>info@webstudio.hu</li>
-            <li>+36 30 123 4567</li>
-            <li>Budapest</li>
+            <li><a href="mailto:booking@kikkolino.hu" id="bookingMail">booking@kikkolino.hu</a></li>
+            <li><a href="#">Instagram · @kikkolino</a></li>
           </ul>
         </div>
         <form class="form" id="contactForm" novalidate>
-          <label>Név<input type="text" name="name" required placeholder="Kovács Anna"></label>
-          <label>E-mail<input type="email" name="email" required placeholder="anna@pelda.hu"></label>
-          <label>Üzenet<textarea name="message" rows="4" required placeholder="Miben segíthetünk?"></textarea></label>
-          <button type="submit" class="btn">Küldés</button>
+          <label>Név / előadónév<input type="text" name="name" required placeholder="pl. MC Valaki"></label>
+          <label>E-mail<input type="email" name="email" required placeholder="te@pelda.hu"></label>
+          <label>Miben segíthetek?
+            <select name="type" required>
+              <option value="">Válassz…</option>
+              <option>Egyedi beat</option>
+              <option>Exkluzív jogok</option>
+              <option>Mix &amp; master</option>
+              <option>Stúdió session</option>
+              <option>Booking / fellépés</option>
+              <option>Egyéb</option>
+            </select>
+          </label>
+          <label>Üzenet<textarea name="message" rows="4" required placeholder="Mesélj a projektről: stílus, referencia, határidő…"></textarea></label>
+          <button type="submit" class="btn">Üzenet küldése</button>
           <p class="form__status" id="formStatus" role="status"></p>
         </form>
       </div>
       <footer class="footer">
-        <p>© <span id="year"></span> Webstúdió</p>
+        <p>© <span id="year"></span> kikkolino</p>
         <a href="#top">Vissza a tetejére ↑</a>
       </footer>
     </section>

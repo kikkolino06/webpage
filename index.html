@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webstúdió – Modern weboldalak</title>
+  <meta name="description" content="Modern, gyors és reszponzív weboldalak készítése.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">Web<span>stúdió</span></a>
+      <nav class="nav" id="nav" aria-label="Fő navigáció">
+        <a href="#rolunk">Rólunk</a>
+        <a href="#szolgaltatasok">Szolgáltatások</a>
+        <a href="#munkaink">Munkáink</a>
+        <a href="#kapcsolat" class="btn btn--small">Kapcsolat</a>
+      </nav>
+      <div class="header__actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Téma váltása">🌙</button>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menü" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__text reveal">
+          <p class="eyebrow">Üdvözlünk!</p>
+          <h1>Weboldalak, amelyek <span class="gradient">működnek</span>.</h1>
+          <p class="lead">Gyors, modern és mobilbarát weboldalakat tervezünk és fejlesztünk – az ötlettől az élesítésig.</p>
+          <div class="hero__cta">
+            <a href="#kapcsolat" class="btn">Kérj ajánlatot</a>
+            <a href="#munkaink" class="btn btn--ghost">Munkáink</a>
+          </div>
+        </div>
+        <div class="hero__visual reveal" aria-hidden="true">
+          <div class="mock">
+            <div class="mock__bar"><i></i><i></i><i></i></div>
+            <div class="mock__body">
+              <div class="mock__line w70"></div>
+              <div class="mock__line w40"></div>
+              <div class="mock__grid"><div></div><div></div><div></div></div>
+              <div class="mock__line w90"></div>
+              <div class="mock__line w60"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="container stats__grid">
+        <div class="stat reveal"><strong data-count="120">0</strong><span>elkészült projekt</span></div>
+        <div class="stat reveal"><strong data-count="98">0</strong><span>% elégedett ügyfél</span></div>
+        <div class="stat reveal"><strong data-count="8">0</strong><span>év tapasztalat</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="rolunk">
+      <div class="container about">
+        <div class="reveal">
+          <p class="eyebrow">Rólunk</p>
+          <h2>Kis csapat, nagy odafigyelés</h2>
+        </div>
+        <div class="reveal">
+          <p>Hiszünk abban, hogy egy jó weboldal egyszerű, gyors és könnyen használható. Minden projektet személyre szabottan kezelünk, és a munka végén nem tűnünk el: segítünk a karbantartásban és a továbbfejlesztésben is.</p>
+          <ul class="checklist">
+            <li>Egyedi design, sablonok nélkül</li>
+            <li>Keresőoptimalizált, villámgyors oldalak</li>
+            <li>Átlátható árazás, határidőre</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="szolgaltatasok">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Szolgáltatások</p>
+          <h2>Miben segíthetünk?</h2>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card__icon">🎨</div>
+            <h3>Webdesign</h3>
+            <p>Letisztult, márkához illő felületek, amelyek minden eszközön jól mutatnak.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon">⚡</div>
+            <h3>Fejlesztés</h3>
+            <p>Modern technológiákkal épített, gyors és biztonságos weboldalak.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon">🛒</div>
+            <h3>Webshop</h3>
+            <p>Online áruházak egyszerű kezeléssel és megbízható fizetéssel.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon">📈</div>
+            <h3>SEO &amp; marketing</h3>
+            <p>Hogy megtaláljanak: keresőoptimalizálás és mérhető eredmények.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="munkaink">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Munkáink</p>
+          <h2>Néhány friss projekt</h2>
+        </div>
+        <div class="filters" role="group" aria-label="Szűrés">
+          <button class="filter is-active" data-filter="all">Összes</button>
+          <button class="filter" data-filter="web">Weboldal</button>
+          <button class="filter" data-filter="shop">Webshop</button>
+          <button class="filter" data-filter="app">Alkalmazás</button>
+        </div>
+        <div class="projects">
+          <article class="project" data-cat="web"><div class="project__img g1"></div><h3>Kávézó honlap</h3><p>Weboldal</p></article>
+          <article class="project" data-cat="shop"><div class="project__img g2"></div><h3>Kézműves bolt</h3><p>Webshop</p></article>
+          <article class="project" data-cat="app"><div class="project__img g3"></div><h3>Foglalási rendszer</h3><p>Alkalmazás</p></article>
+          <article class="project" data-cat="web"><div class="project__img g4"></div><h3>Ügyvédi iroda</h3><p>Weboldal</p></article>
+          <article class="project" data-cat="shop"><div class="project__img g5"></div><h3>Divatáru webshop</h3><p>Webshop</p></article>
+          <article class="project" data-cat="app"><div class="project__img g6"></div><h3>Edzésnapló</h3><p>Alkalmazás</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="kapcsolat">
+      <div class="container contact">
+        <div class="reveal">
+          <p class="eyebrow">Kapcsolat</p>
+          <h2>Beszéljünk a projektedről!</h2>
+          <p>Írj nekünk, és 24 órán belül válaszolunk.</p>
+          <ul class="contact__info">
+            <li>📧 info@webstudio.hu</li>
+            <li>📞 +36 30 123 4567</li>
+            <li>📍 Budapest</li>
+          </ul>
+        </div>
+        <form class="form reveal" id="contactForm" novalidate>
+          <label>Név
+            <input type="text" name="name" required placeholder="Kovács Anna">
+          </label>
+          <label>E-mail
+            <input type="email" name="email" required placeholder="anna@pelda.hu">
+          </label>
+          <label>Üzenet
+            <textarea name="message" rows="5" required placeholder="Miben segíthetünk?"></textarea>
+          </label>
+          <button type="submit" class="btn">Küldés</button>
+          <p class="form__status" id="formStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Webstúdió. Minden jog fenntartva.</p>
+      <a href="#" class="to-top">Vissza a tetejére ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

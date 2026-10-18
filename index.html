@@ -4,170 +4,169 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Webstúdió – Modern weboldalak</title>
-  <meta name="description" content="Modern, gyors és reszponzív weboldalak készítése.">
+  <meta name="description" content="Gyors, modern és filmszerű weboldalak tervezése és fejlesztése.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header" id="header">
-    <div class="container header__inner">
-      <a href="#" class="logo">Web<span>stúdió</span></a>
-      <nav class="nav" id="nav" aria-label="Fő navigáció">
-        <a href="#rolunk">Rólunk</a>
-        <a href="#szolgaltatasok">Szolgáltatások</a>
-        <a href="#munkaink">Munkáink</a>
-        <a href="#kapcsolat" class="btn btn--small">Kapcsolat</a>
-      </nav>
-      <div class="header__actions">
-        <button class="icon-btn" id="themeToggle" aria-label="Téma váltása">🌙</button>
-        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menü" aria-expanded="false">☰</button>
-      </div>
-    </div>
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top"><span class="nav__mark" aria-hidden="true"></span>Webstúdió</a>
+    <nav class="nav__links" id="navLinks" aria-label="Fő navigáció">
+      <a href="#folyamat">Folyamat</a>
+      <a href="#szolgaltatasok">Szolgáltatások</a>
+      <a href="#eredmenyek">Eredmények</a>
+      <a href="#kapcsolat">Kapcsolat</a>
+    </nav>
+    <a href="#kapcsolat" class="nav__cta">Ajánlatkérés</a>
+    <button class="nav__menu" id="menuToggle" aria-label="Menü" aria-expanded="false"><span></span><span></span></button>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero__inner">
-        <div class="hero__text reveal">
-          <p class="eyebrow">Üdvözlünk!</p>
-          <h1>Weboldalak, amelyek <span class="gradient">működnek</span>.</h1>
-          <p class="lead">Gyors, modern és mobilbarát weboldalakat tervezünk és fejlesztünk – az ötlettől az élesítésig.</p>
-          <div class="hero__cta">
-            <a href="#kapcsolat" class="btn">Kérj ajánlatot</a>
-            <a href="#munkaink" class="btn btn--ghost">Munkáink</a>
-          </div>
+    <!-- 1. Hero: naplemente → drótváz -->
+    <section class="scene hero" id="top" data-scene="hero" data-nav="dark">
+      <div class="stage">
+        <div class="hero__photo" aria-hidden="true">
+          <div class="hero__sun"></div>
+          <svg class="hero__hills" viewBox="0 0 1600 400" preserveAspectRatio="none">
+            <path class="h1" d="M0 230 L120 170 L260 210 L380 120 L520 190 L640 140 L780 200 L900 110 L1040 180 L1180 130 L1320 200 L1460 150 L1600 190 L1600 400 L0 400Z"/>
+            <path class="h2" d="M0 280 L160 230 L300 270 L460 210 L600 260 L760 230 L920 280 L1080 220 L1240 270 L1400 230 L1600 260 L1600 400 L0 400Z"/>
+            <path class="h3" d="M0 330 L200 300 L420 325 L700 290 L980 320 L1260 295 L1600 320 L1600 400 L0 400Z"/>
+          </svg>
+          <div class="hero__ground"></div>
         </div>
-        <div class="hero__visual reveal" aria-hidden="true">
-          <div class="mock">
-            <div class="mock__bar"><i></i><i></i><i></i></div>
-            <div class="mock__body">
-              <div class="mock__line w70"></div>
-              <div class="mock__line w40"></div>
-              <div class="mock__grid"><div></div><div></div><div></div></div>
-              <div class="mock__line w90"></div>
-              <div class="mock__line w60"></div>
-            </div>
-          </div>
+        <canvas class="hero__wire" id="heroCanvas" aria-hidden="true"></canvas>
+        <div class="hero__vignette" aria-hidden="true"></div>
+
+        <div class="hero__titles">
+          <h1 class="title split" data-split="char" id="t1">Weboldalak, amelyek működnek.</h1>
+          <p class="title split" data-split="char" id="t2">Újragondoltuk a webet,</p>
+          <p class="title split" data-split="char" id="t3">a pixeltől a kódig.</p>
+        </div>
+        <div class="hero__scroll" id="heroScroll"><span></span>Görgess</div>
+      </div>
+    </section>
+
+    <!-- 2. Sötét rács → fehér panel szöveggel -->
+    <section class="scene manifesto" data-scene="manifesto" data-nav="dark">
+      <div class="stage">
+        <canvas class="grid-canvas" id="gridCanvas" aria-hidden="true"></canvas>
+        <p class="manifesto__kicker" id="kicker"><span class="mono">[ 01 ]</span> A jövő webje már itt van</p>
+        <div class="manifesto__panel" id="panel">
+          <p class="manifesto__text split" data-split="word" id="manifestoText">
+            Képzeld el a weboldalad úgy, mint egy <mark>élő rendszert</mark>, amely zökkenőmentesen köti össze az első kattintást az elégedett ügyféllel.
+          </p>
         </div>
       </div>
     </section>
 
-    <section class="stats">
-      <div class="container stats__grid">
-        <div class="stat reveal"><strong data-count="120">0</strong><span>elkészült projekt</span></div>
-        <div class="stat reveal"><strong data-count="98">0</strong><span>% elégedett ügyfél</span></div>
-        <div class="stat reveal"><strong data-count="8">0</strong><span>év tapasztalat</span></div>
+    <!-- 3. Folyamat: fotó → drótváz törlés -->
+    <section class="scene process" id="folyamat" data-scene="process" data-nav="light">
+      <div class="stage">
+        <div class="process__steps">
+          <p class="eyebrow mono">[ 02 ] Folyamat</p>
+          <ol>
+            <li class="step"><span class="mono">01</span><h3>Tervezés</h3><p>Megismerjük a céljaidat, és felvázoljuk az oldal szerkezetét és hangulatát.</p></li>
+            <li class="step"><span class="mono">02</span><h3>Fejlesztés</h3><p>A tervből gyors, tiszta kód lesz – minden eszközre optimalizálva.</p></li>
+            <li class="step"><span class="mono">03</span><h3>Indulás</h3><p>Élesítjük, mérjük és folyamatosan finomítjuk az eredményeket.</p></li>
+          </ol>
+        </div>
+        <div class="process__visual" id="processVisual" aria-hidden="true">
+          <svg class="layer layer--photo" id="isoPhoto" viewBox="0 0 600 640"></svg>
+          <svg class="layer layer--wire" id="isoWire" viewBox="0 0 600 640"></svg>
+          <div class="process__scan"></div>
+          <span class="process__tag mono" id="processTag">RENDER</span>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="rolunk">
-      <div class="container about">
-        <div class="reveal">
-          <p class="eyebrow">Rólunk</p>
-          <h2>Kis csapat, nagy odafigyelés</h2>
+    <!-- 4. Betűszó: M W S → Modern Web Stúdió -->
+    <section class="scene acro" data-scene="acro" data-nav="dark">
+      <div class="stage">
+        <div class="acro__grid" aria-hidden="true"></div>
+        <h2 class="acro__title" id="acro">
+          <span class="acro__word"><b>M</b><i>odern</i></span>
+          <span class="acro__word"><b>W</b><i>eb</i></span>
+          <span class="acro__word"><b>S</b><i>túdió</i></span>
+        </h2>
+        <p class="acro__sub" id="acroSub">Egy csapat, amely a dizájnt, a kódot és a növekedést egyetlen rendszerként kezeli.</p>
+      </div>
+    </section>
+
+    <!-- 5. Szolgáltatások: vízszintes görgetés -->
+    <section class="scene bays" id="szolgaltatasok" data-scene="bays" data-nav="dark">
+      <div class="stage">
+        <div class="bays__head">
+          <p class="eyebrow mono">[ 03 ] Szolgáltatások</p>
+          <h2>Minden, ami egy erős online jelenléthez kell</h2>
         </div>
-        <div class="reveal">
-          <p>Hiszünk abban, hogy egy jó weboldal egyszerű, gyors és könnyen használható. Minden projektet személyre szabottan kezelünk, és a munka végén nem tűnünk el: segítünk a karbantartásban és a továbbfejlesztésben is.</p>
-          <ul class="checklist">
-            <li>Egyedi design, sablonok nélkül</li>
-            <li>Keresőoptimalizált, villámgyors oldalak</li>
-            <li>Átlátható árazás, határidőre</li>
+        <div class="bays__track" id="baysTrack">
+          <article class="bay"><span class="bay__num mono">01</span><div class="bay__inner"><h3>Webdesign</h3><p>Letisztult, márkához illő felületek, amelyek minden képernyőn működnek.</p></div><div class="bay__door"></div></article>
+          <article class="bay"><span class="bay__num mono">02</span><div class="bay__inner"><h3>Fejlesztés</h3><p>Modern technológiákkal épített, villámgyors és biztonságos oldalak.</p></div><div class="bay__door"></div></article>
+          <article class="bay"><span class="bay__num mono">03</span><div class="bay__inner"><h3>Webshop</h3><p>Online áruházak egyszerű kezeléssel és megbízható fizetéssel.</p></div><div class="bay__door"></div></article>
+          <article class="bay"><span class="bay__num mono">04</span><div class="bay__inner"><h3>Animáció</h3><p>Görgetésre reagáló, filmszerű élmények, amelyekre emlékeznek.</p></div><div class="bay__door"></div></article>
+          <article class="bay"><span class="bay__num mono">05</span><div class="bay__inner"><h3>SEO</h3><p>Hogy megtaláljanak: technikai és tartalmi keresőoptimalizálás.</p></div><div class="bay__door"></div></article>
+          <article class="bay"><span class="bay__num mono">06</span><div class="bay__inner"><h3>Üzemeltetés</h3><p>Tárhely, frissítések és felügyelet – nem tűnünk el az átadás után.</p></div><div class="bay__door"></div></article>
+        </div>
+        <div class="bays__progress" aria-hidden="true"><span id="baysBar"></span></div>
+      </div>
+    </section>
+
+    <!-- 6. Földgömb + számok -->
+    <section class="scene globe" id="eredmenyek" data-scene="globe" data-nav="dark">
+      <div class="stage">
+        <canvas class="globe__canvas" id="globeCanvas" aria-hidden="true"></canvas>
+        <div class="globe__head" id="globeHead">
+          <p class="eyebrow mono">[ 04 ] Eredmények</p>
+          <h2>Ügyfeleink az egész országban – és azon túl</h2>
+        </div>
+        <div class="globe__stats" id="globeStats">
+          <div class="stat"><strong data-count="120" data-suffix="+">0</strong><span>elkészült projekt</span></div>
+          <div class="stat"><strong data-count="98" data-suffix="%">0</strong><span>elégedett ügyfél</span></div>
+          <div class="stat"><strong data-count="8" data-suffix=" év">0</strong><span>tapasztalat</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Vélemény -->
+    <section class="scene quote" data-scene="quote" data-nav="dark">
+      <div class="stage">
+        <div class="quote__fog" aria-hidden="true"></div>
+        <figure class="quote__body">
+          <blockquote class="split" data-split="word" id="quoteText">„Még soha nem láttunk ilyen gondosságot egy webes projektben. Az új oldal fontos mérföldkő volt a cégünk digitális fejlődésében.”</blockquote>
+          <figcaption id="quoteBy">Kovács Anna <span>· ügyvezető, Kávé &amp; Társa</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 8. Kapcsolat -->
+    <section class="contact" id="kapcsolat" data-nav="dark">
+      <div class="contact__inner">
+        <div>
+          <p class="eyebrow mono">[ 05 ] Kapcsolat</p>
+          <h2>Kezdjük el?</h2>
+          <p class="contact__lead">Írj nekünk, és 24 órán belül válaszolunk.</p>
+          <ul class="contact__info mono">
+            <li>info@webstudio.hu</li>
+            <li>+36 30 123 4567</li>
+            <li>Budapest</li>
           </ul>
         </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="szolgaltatasok">
-      <div class="container">
-        <div class="section__head reveal">
-          <p class="eyebrow">Szolgáltatások</p>
-          <h2>Miben segíthetünk?</h2>
-        </div>
-        <div class="cards">
-          <article class="card reveal">
-            <div class="card__icon">🎨</div>
-            <h3>Webdesign</h3>
-            <p>Letisztult, márkához illő felületek, amelyek minden eszközön jól mutatnak.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card__icon">⚡</div>
-            <h3>Fejlesztés</h3>
-            <p>Modern technológiákkal épített, gyors és biztonságos weboldalak.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card__icon">🛒</div>
-            <h3>Webshop</h3>
-            <p>Online áruházak egyszerű kezeléssel és megbízható fizetéssel.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card__icon">📈</div>
-            <h3>SEO &amp; marketing</h3>
-            <p>Hogy megtaláljanak: keresőoptimalizálás és mérhető eredmények.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="munkaink">
-      <div class="container">
-        <div class="section__head reveal">
-          <p class="eyebrow">Munkáink</p>
-          <h2>Néhány friss projekt</h2>
-        </div>
-        <div class="filters" role="group" aria-label="Szűrés">
-          <button class="filter is-active" data-filter="all">Összes</button>
-          <button class="filter" data-filter="web">Weboldal</button>
-          <button class="filter" data-filter="shop">Webshop</button>
-          <button class="filter" data-filter="app">Alkalmazás</button>
-        </div>
-        <div class="projects">
-          <article class="project" data-cat="web"><div class="project__img g1"></div><h3>Kávézó honlap</h3><p>Weboldal</p></article>
-          <article class="project" data-cat="shop"><div class="project__img g2"></div><h3>Kézműves bolt</h3><p>Webshop</p></article>
-          <article class="project" data-cat="app"><div class="project__img g3"></div><h3>Foglalási rendszer</h3><p>Alkalmazás</p></article>
-          <article class="project" data-cat="web"><div class="project__img g4"></div><h3>Ügyvédi iroda</h3><p>Weboldal</p></article>
-          <article class="project" data-cat="shop"><div class="project__img g5"></div><h3>Divatáru webshop</h3><p>Webshop</p></article>
-          <article class="project" data-cat="app"><div class="project__img g6"></div><h3>Edzésnapló</h3><p>Alkalmazás</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="kapcsolat">
-      <div class="container contact">
-        <div class="reveal">
-          <p class="eyebrow">Kapcsolat</p>
-          <h2>Beszéljünk a projektedről!</h2>
-          <p>Írj nekünk, és 24 órán belül válaszolunk.</p>
-          <ul class="contact__info">
-            <li>📧 info@webstudio.hu</li>
-            <li>📞 +36 30 123 4567</li>
-            <li>📍 Budapest</li>
-          </ul>
-        </div>
-        <form class="form reveal" id="contactForm" novalidate>
-          <label>Név
-            <input type="text" name="name" required placeholder="Kovács Anna">
-          </label>
-          <label>E-mail
-            <input type="email" name="email" required placeholder="anna@pelda.hu">
-          </label>
-          <label>Üzenet
-            <textarea name="message" rows="5" required placeholder="Miben segíthetünk?"></textarea>
-          </label>
+        <form class="form" id="contactForm" novalidate>
+          <label>Név<input type="text" name="name" required placeholder="Kovács Anna"></label>
+          <label>E-mail<input type="email" name="email" required placeholder="anna@pelda.hu"></label>
+          <label>Üzenet<textarea name="message" rows="4" required placeholder="Miben segíthetünk?"></textarea></label>
           <button type="submit" class="btn">Küldés</button>
           <p class="form__status" id="formStatus" role="status"></p>
         </form>
       </div>
+      <footer class="footer">
+        <p>© <span id="year"></span> Webstúdió</p>
+        <a href="#top">Vissza a tetejére ↑</a>
+      </footer>
     </section>
   </main>
-
-  <footer class="footer">
-    <div class="container footer__inner">
-      <p>© <span id="year"></span> Webstúdió. Minden jog fenntartva.</p>
-      <a href="#" class="to-top">Vissza a tetejére ↑</a>
-    </div>
-  </footer>
 
   <script src="script.js"></script>
 </body>

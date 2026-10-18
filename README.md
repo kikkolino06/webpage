@@ -12,8 +12,14 @@ python3 -m http.server 8000
 
 ## Funkciók
 
-- Világos / sötét téma (megjegyzi a választást)
-- Mobil menü
-- Görgetésre megjelenő animációk, számlálók
-- Szűrhető projektgaléria
+Filmszerű, görgetésre animált oldal (külső könyvtár nélkül, saját görgetésvezérlővel):
+
+- Lebegő, átlátszó navigáció, amely a szekció színéhez igazodik
+- Hero: naplemente, amely görgetésre drótvázas tájjá oldódik, betűnként előtűnő címekkel
+- Sötét, villódzó rács, majd felcsúszó fehér panel szavanként megjelenő szöveggel
+- Folyamat: izometrikus blokkok, „fotó → drótváz” törléses átmenettel
+- Betűszó-animáció: M W S → Modern Web Stúdió
+- Vízszintesen görgethető szolgáltatás-kártyák felnyíló ajtókkal
+- Forgó földgömb lime ívekkel és számlálókkal
 - Kapcsolati űrlap kliensoldali ellenőrzéssel
+- Mobilra optimalizálva, `prefers-reduced-motion` támogatással

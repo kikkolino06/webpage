@@ -4,160 +4,117 @@ const range = (p, a, b) => clamp((p - a) / (b - a));
 const ease = (t) => 1 - Math.pow(1 - t, 3);
 const $ = (id) => document.getElementById(id);
 
-/* ---------- Beat: 140 BPM trap loop Web Audióval, a vizuálok erre lüktetnek ---------- */
-const BPM = 140;
-const STEP = 60 / BPM / 4; // tizenhatod hang
-let clockStart = performance.now();
+/* ---------- Snippetek: lejátszás + előre kiszámolt spektrum, amire a vizuálok mozognak ---------- */
+const tracks = [
+  { id: 'untitled-01', title: 'untitled.01', src: 'audio/untitled-01.mp3' },
+  { id: 'opiumshi3', title: 'opiumshi3', src: 'audio/opiumshi3.mp3' },
+];
+const decode = (b64) => Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+tracks.forEach((tr) => {
+  const d = window.SNIPPET_DATA[tr.id];
+  tr.fps = d.fps;
+  tr.bands = d.bands;
+  tr.frames = d.frames;
+  tr.spec = decode(d.spec);
+  tr.kick = decode(d.kick);
+  tr.peaks = d.peaks;
+});
+
+const player = new Audio();
+player.preload = 'none';
+let current = 0;
 let playing = false;
-let audio = null;
 
-// Mintázat két ütemre (32 lépés)
-const pattern = {
-  kick: [0, 11, 16, 22, 27],
-  snare: [8, 24],
-  hat: [...Array(32).keys()].filter((i) => i % 2 === 0 || (i >= 28 && i < 32) || i === 13 || i === 15),
-  bass: { 0: 43.65, 11: 43.65, 16: 51.91, 22: 38.89, 27: 43.65 },
-  bell: { 0: 523.25, 3: 622.25, 6: 698.46, 10: 622.25, 16: 466.16, 19: 523.25, 22: 622.25, 26: 392 },
-};
-const hasStep = (list, s) => list.includes(s);
-
-function initAudio() {
-  const ctx = new (window.AudioContext || window.webkitAudioContext)();
-  const master = ctx.createGain();
-  master.gain.value = 0.55;
-  const comp = ctx.createDynamicsCompressor();
-  comp.threshold.value = -14;
-  comp.ratio.value = 4;
-  master.connect(comp).connect(ctx.destination);
-  const noise = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
-  const data = noise.getChannelData(0);
-  for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
-  return { ctx, master, noise, nextTime: 0, step: 0, timer: null };
+function load(i) {
+  if (player.dataset.track === String(i)) return;
+  current = i;
+  player.src = tracks[i].src;
+  player.dataset.track = i;
 }
 
-function env(g, t, peak, attack, decay) {
-  g.gain.setValueAtTime(0.0001, t);
-  g.gain.exponentialRampToValueAtTime(peak, t + attack);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + attack + decay);
-}
-
-function play808(a, t, freq) {
-  const { ctx, master } = a;
-  const o = ctx.createOscillator();
-  const g = ctx.createGain();
-  const sat = ctx.createWaveShaper();
-  const curve = new Float32Array(256);
-  for (let i = 0; i < 256; i++) { const x = (i / 128) - 1; curve[i] = Math.tanh(x * 2.2); }
-  sat.curve = curve;
-  o.type = 'sine';
-  o.frequency.setValueAtTime(freq * 3.2, t);
-  o.frequency.exponentialRampToValueAtTime(freq, t + 0.06);
-  env(g, t, 0.9, 0.005, 0.75);
-  o.connect(sat).connect(g).connect(master);
-  o.start(t);
-  o.stop(t + 0.9);
-}
-
-function playNoise(a, t, { hp, peak, decay }) {
-  const { ctx, master, noise } = a;
-  const src = ctx.createBufferSource();
-  src.buffer = noise;
-  const f = ctx.createBiquadFilter();
-  f.type = 'highpass';
-  f.frequency.value = hp;
-  const g = ctx.createGain();
-  env(g, t, peak, 0.002, decay);
-  src.connect(f).connect(g).connect(master);
-  src.start(t);
-  src.stop(t + decay + 0.05);
-}
-
-function playSnare(a, t) {
-  playNoise(a, t, { hp: 1400, peak: 0.5, decay: 0.22 });
-  const o = a.ctx.createOscillator();
-  const g = a.ctx.createGain();
-  o.frequency.setValueAtTime(220, t);
-  o.frequency.exponentialRampToValueAtTime(160, t + 0.1);
-  env(g, t, 0.3, 0.002, 0.12);
-  o.connect(g).connect(a.master);
-  o.start(t);
-  o.stop(t + 0.2);
-}
-
-function playBell(a, t, freq) {
-  const { ctx, master } = a;
-  [1, 2.01].forEach((m, i) => {
-    const o = ctx.createOscillator();
-    const g = ctx.createGain();
-    o.type = i ? 'sine' : 'triangle';
-    o.frequency.value = freq * m;
-    env(g, t, i ? 0.03 : 0.09, 0.004, 0.9);
-    o.connect(g).connect(master);
-    o.start(t);
-    o.stop(t + 1);
-  });
-}
-
-function schedule() {
-  const a = audio;
-  while (a.nextTime < a.ctx.currentTime + 0.12) {
-    const s = a.step % 32;
-    const t = a.nextTime;
-    if (s in pattern.bass) play808(a, t, pattern.bass[s]);
-    if (hasStep(pattern.snare, s)) playSnare(a, t);
-    if (hasStep(pattern.hat, s)) {
-      const roll = s >= 28;
-      playNoise(a, t, { hp: 8000, peak: roll ? 0.12 : 0.18, decay: 0.04 });
-      if (roll) playNoise(a, t + STEP / 2, { hp: 8000, peak: 0.1, decay: 0.03 });
-    }
-    if (s in pattern.bell) playBell(a, t, pattern.bell[s]);
-    a.nextTime += STEP;
-    a.step++;
+function play(i = current, at) {
+  load(i);
+  if (at !== undefined) {
+    const seek = () => { player.currentTime = at; };
+    player.readyState >= 1 ? seek() : player.addEventListener('loadedmetadata', seek, { once: true });
   }
+  player.play().catch(() => {});
 }
 
 const playButtons = [...document.querySelectorAll('.js-play')];
+const trackEls = [...document.querySelectorAll('.track')];
+
 function setPlaying(on) {
   playing = on;
   document.body.classList.toggle('is-playing', on);
+  const label = on ? 'Pause snippet' : 'Play snippet';
   playButtons.forEach((b) => {
     b.setAttribute('aria-pressed', on);
-    b.setAttribute('aria-label', on ? 'Beat leállítása' : 'Beat indítása');
-    const label = b.querySelector('.js-play-label');
-    if (label) label.textContent = on ? 'Beat leállítása' : 'Beat indítása';
+    b.setAttribute('aria-label', label);
+    const l = b.querySelector('.js-play-label');
+    if (l) l.textContent = on ? `Now playing · ${tracks[current].title}` : label;
+  });
+  trackEls.forEach((el, i) => {
+    el.classList.toggle('is-current', i === current);
+    el.classList.toggle('is-playing', on && i === current);
+    el.querySelector('.track__play').setAttribute('aria-label', `${on && i === current ? 'Pause' : 'Play'} ${tracks[i].title}`);
   });
 }
 
-playButtons.forEach((btn) => btn.addEventListener('click', async () => {
-  if (playing) {
-    clearInterval(audio.timer);
-    audio.master.gain.setTargetAtTime(0, audio.ctx.currentTime, 0.05);
-    setTimeout(() => audio.ctx.suspend(), 200);
-    return setPlaying(false);
-  }
-  if (!audio) audio = initAudio();
-  await audio.ctx.resume();
-  audio.master.gain.cancelScheduledValues(audio.ctx.currentTime);
-  audio.master.gain.setValueAtTime(0.55, audio.ctx.currentTime);
-  audio.step = 0;
-  audio.nextTime = audio.ctx.currentTime + 0.05;
-  clockStart = performance.now() + 50;
-  schedule();
-  audio.timer = setInterval(schedule, 25);
-  setPlaying(true);
-}));
+player.addEventListener('play', () => setPlaying(true));
+player.addEventListener('pause', () => setPlaying(false));
+player.addEventListener('ended', () => play((current + 1) % tracks.length, 0));
 
-// Lüktetés: 1 a kick pillanatában, utána lecseng. Lejátszás nélkül halványabb.
+playButtons.forEach((btn) => btn.addEventListener('click', () => (playing ? player.pause() : play())));
+trackEls.forEach((el, i) => {
+  el.querySelector('.track__play').addEventListener('click', () => {
+    if (playing && i === current) return player.pause();
+    play(i);
+  });
+  el.querySelector('.track__wave').addEventListener('click', (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    play(i, clamp((e.clientX - r.left) / r.width) * 30);
+  });
+});
+
+// Aktuális zenei állapot: kick (0–1), sávok (0–1), lépésszámláló. Lejátszás nélkül halk „üresjárat”.
+const idleBands = new Float32Array(32);
 function beat(t) {
-  const steps = (t - clockStart) / 1000 / STEP;
-  const s = ((Math.floor(steps) % 32) + 32) % 32;
-  const frac = steps - Math.floor(steps);
-  let since = 99;
-  for (let k = 0; k < 8; k++) {
-    if (pattern.kick.includes((s - k + 32) % 32)) { since = k + frac; break; }
+  if (playing && player.currentTime > 0) {
+    const tr = tracks[current];
+    const f = Math.min(tr.frames - 1, Math.floor(player.currentTime * tr.fps));
+    const bands = new Float32Array(tr.bands);
+    for (let k = 0; k < tr.bands; k++) bands[k] = tr.spec[f * tr.bands + k] / 255;
+    return { kick: tr.kick[f] / 255, bands, step: player.currentTime * 8, amt: 1 };
   }
-  const amt = playing ? 1 : reduced ? 0 : 0.3;
-  return { kick: Math.exp(-since * 0.9) * amt, step: steps, amt };
+  const amt = reduced ? 0 : 0.3;
+  const phase = (t / 1000 / 0.8) % 1;
+  for (let k = 0; k < 32; k++) idleBands[k] = (0.25 + 0.2 * Math.sin(t * 0.0015 + k * 0.5)) * amt * (1 - k / 48);
+  return { kick: Math.exp(-phase * 5) * amt, bands: idleBands, step: t / 1000 * 4, amt };
+}
+
+// Hullámforma rajzolása a lejátszókártyákon
+const waves = trackEls.map((el) => makeCanvasLazy(el.querySelector('.track__wave')));
+const times = trackEls.map((el) => el.querySelector('.track__time'));
+const fmt = (sec) => `0:${String(Math.floor(sec)).padStart(2, '0')}`;
+
+function drawWaves(b) {
+  waves.forEach((wv, i) => {
+    const { ctx, w, h } = wv.size();
+    const tr = tracks[i];
+    const active = i === current && player.currentTime > 0;
+    const prog = active ? player.currentTime / 30 : 0;
+    ctx.clearRect(0, 0, w, h);
+    const n = tr.peaks.length;
+    const bw = w / n;
+    for (let k = 0; k < n; k++) {
+      const boost = active && playing && Math.abs(k / n - prog) < 0.02 ? 1 + b.kick * 0.5 : 1;
+      const ph = Math.max(2, tr.peaks[k] * h * 0.9 * boost);
+      ctx.fillStyle = k / n < prog ? '#c6ff3d' : 'rgba(255,255,255,0.22)';
+      ctx.fillRect(k * bw + bw * 0.2, (h - ph) / 2, bw * 0.6, ph);
+    }
+    times[i].textContent = `${fmt(active ? player.currentTime : 0)} / 0:30`;
+  });
 }
 
 /* ---------- Szöveg bontás ---------- */
@@ -213,6 +170,23 @@ function makeCanvas(canvas) {
   return state;
 }
 
+function makeCanvasLazy(canvas) {
+  const ctx = canvas.getContext('2d');
+  let w = 0, h = 0;
+  return {
+    size() {
+      const cw = canvas.clientWidth, ch = canvas.clientHeight;
+      if (cw !== w || ch !== h) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = cw; h = ch;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      return { ctx, w, h };
+    },
+  };
+}
+
 /* ---------- 1. Hero: éjszakai város → hullámzó drótváz ---------- */
 function buildSkyline() {
   let back = '';
@@ -246,10 +220,12 @@ buildSkyline();
 
 const hero = makeCanvas($('heroCanvas'));
 const stars = Array.from({ length: 160 }, () => [Math.random(), Math.random() * 0.55, Math.random()]);
-const terrain = (x, z, k) => {
-  const base = Math.sin(x * 0.55 + z * 0.3) * 0.6 + Math.sin(x * 1.3 - z * 0.45) * 0.3 + Math.sin(z * 0.9) * 0.15;
-  const spectrum = Math.abs(Math.sin(x * 2.1 + z * 0.2)) * Math.exp(-Math.abs(x) * 0.25) * k * 1.6;
-  return base * (0.15 + Math.abs(x) * 0.22) + spectrum;
+// A táj közeli sorai hangszínképként emelkednek: középen a mély, kifelé a magas sávok
+const terrain = (x, wz, z, b) => {
+  const base = Math.sin(x * 0.55 + wz * 0.3) * 0.6 + Math.sin(x * 1.3 - wz * 0.45) * 0.3 + Math.sin(wz * 0.9) * 0.15;
+  const band = b.bands[Math.min(31, Math.floor((Math.abs(x) / 16) * 32))];
+  const eq = band * 2.4 * Math.exp(-z * 0.09) + b.kick * Math.exp(-Math.abs(x) * 0.3) * 0.8;
+  return base * (0.15 + Math.abs(x) * 0.22) + eq;
 };
 
 function drawHero(p, t, b) {
@@ -269,7 +245,7 @@ function drawHero(p, t, b) {
 
   const project = (x, z) => {
     const wz = z + travel - offset;
-    const y = terrain(x, wz, b.kick);
+    const y = terrain(x, wz, z, b);
     return [w / 2 + (x / z) * F, horizon + ((camH - y) / z) * F * 0.5];
   };
 
@@ -356,7 +332,7 @@ function drawGrid(p, t, b) {
   for (let c = 0; c < cols; c++) {
     const dist = (head - c + cols) % cols;
     if (dist > 4) continue;
-    const glow = Math.exp(-(dist + frac) * 0.9) * (0.25 + b.amt);
+    const glow = Math.exp(-(dist + frac) * 0.9) * (0.25 + b.amt * 0.4 + b.kick * 0.9);
     for (let r = -1; r <= rows; r++) {
       const y = oy % size + r * size;
       if (cellOn(c, r)) {
@@ -390,7 +366,7 @@ function updateManifesto(p, t, b) {
 
 /* ---------- 3. Folyamat: izometrikus stúdiópult, render → drótváz ---------- */
 const PAD = ['#c6ff3d', '#2b2533', '#ff4d8d', '#2b2533', '#2b2533', '#8a5cff', '#2b2533', '#c6ff3d', '#ff4d8d', '#2b2533', '#2b2533', '#8a5cff', '#2b2533', '#c6ff3d', '#2b2533', '#ff4d8d'];
-const boxes = [{ b: [0, 0, 0, 9, 7, 0.5], color: '#3a3446', label: 'PULT · 9×7' }];
+const boxes = [{ b: [0, 0, 0, 9, 7, 0.5], color: '#3a3446', label: 'CONSOLE · 9×7' }];
 for (let i = 0; i < 16; i++) {
   const col = i % 4;
   const row = Math.floor(i / 4);
@@ -441,7 +417,7 @@ function updateProcess(p) {
   processVisual.style.setProperty('--in', ease(range(p, 0, 0.18)));
   const w = range(p, 0.42, 0.72);
   processVisual.style.setProperty('--w', w);
-  processTag.textContent = w < 0.5 ? 'STÚDIÓ · LIVE' : 'DRÓTVÁZ · SESSION';
+  processTag.textContent = w < 0.5 ? 'REC · STUDIO' : 'REC · WIREFRAME';
   const active = Math.min(2, Math.floor(range(p, 0.1, 0.95) * 3));
   steps.forEach((s, i) => s.classList.toggle('is-active', i === active));
 }
@@ -466,7 +442,9 @@ const track = $('baysTrack');
 const bays = [...track.children];
 const baysBar = $('baysBar');
 
-function updateBays(p) {
+const baysStage = $('baysStage');
+function updateBays(p, t, b) {
+  baysStage.style.setProperty('--kick', b.kick.toFixed(3));
   const max = Math.max(0, track.scrollWidth - window.innerWidth);
   track.style.transform = `translate3d(${-range(p, 0.05, 0.95) * max}px,0,0)`;
   baysBar.style.setProperty('--p', p);
@@ -487,12 +465,14 @@ function drawVinyl(p, t, b) {
   const { ctx, w, h } = vinyl;
   ctx.clearRect(0, 0, w, h);
   const rise = ease(range(p, 0, 0.35));
-  const R = Math.min(w, h) * (w < 600 ? 0.38 : 0.32);
-  const cx = w / 2 + (w < 600 ? 0 : w * 0.12);
-  const cy = h * 0.55 + (1 - rise) * h * 0.7;
+  const mobile = w < 760;
+  const R = mobile ? Math.min(w * 0.3, h * 0.14) : Math.min(w * 0.26, h * 0.34);
+  const cx = mobile ? w * 0.5 : w * 0.7;
+  const cy = (mobile ? h * 0.69 : h * 0.52) + (1 - rise) * h * 0.7;
+  ctx.globalAlpha = mobile ? 0.85 : 1;
   const dt = t - lastT;
   lastT = t;
-  if (!reduced) spin += dt * (playing ? 0.0035 : 0.0008);
+  if (!reduced) spin += dt * (playing ? 0.0035 : 0.0006);
   const rot = spin + p * 4;
 
   // Spektrum a lemez körül
@@ -500,9 +480,10 @@ function drawVinyl(p, t, b) {
   const reach = range(p, 0.2, 0.5);
   for (let i = 0; i < bars; i++) {
     const ang = (i / bars) * Math.PI * 2 - Math.PI / 2;
-    const low = Math.exp(-Math.min(i, bars - i) / 14);
-    const wave = 0.5 + 0.5 * Math.sin(i * 0.7 + t * 0.004) * Math.sin(i * 0.23 - t * 0.0021);
-    const len = (8 + wave * 26 * (0.3 + b.amt) + low * b.kick * 90) * reach;
+    const k = Math.min(i, bars - i);
+    const low = Math.exp(-k / 10);
+    const band = b.bands[Math.min(31, Math.floor((k / (bars / 2)) * 32))];
+    const len = (6 + band * R * 0.45 + low * b.kick * R * 0.25) * reach;
     if (len < 0.5) continue;
     const r0 = R * 1.06;
     ctx.strokeStyle = `rgba(198,255,61,${0.35 + low * b.kick * 0.6})`;
@@ -554,20 +535,27 @@ function drawVinyl(p, t, b) {
   ctx.font = `600 ${Math.round(L * 0.26)}px "Inter Tight", sans-serif`;
   ctx.fillText('kikkolino', 0, -L * 0.25);
   ctx.font = `500 ${Math.round(L * 0.13)}px "JetBrains Mono", monospace`;
-  ctx.fillText(`${BPM} BPM · SIDE A`, 0, L * 0.5);
+  ctx.fillText(`${tracks[current].title.toUpperCase()} · SIDE ${current ? 'B' : 'A'}`, 0, L * 0.5);
   ctx.beginPath(); ctx.arc(0, 0, L * 0.07, 0, Math.PI * 2); ctx.fillStyle = '#050307'; ctx.fill();
   ctx.restore();
+  ctx.globalAlpha = 1;
 }
 
 const vinylHead = $('vinylHead');
 const vinylLinks = $('vinylLinks');
+const tracksEl = $('tracks');
 
 function updateVinyl(p, t, b) {
-  vinylHead.style.setProperty('--o', range(p, 0.1, 0.25));
-  const o = range(p, 0.35, 0.5);
+  vinylHead.style.setProperty('--o', range(p, 0.05, 0.18));
+  const to = range(p, 0.12, 0.28);
+  tracksEl.style.setProperty('--o', to);
+  tracksEl.style.setProperty('--pe', to > 0.5 ? 'auto' : 'none');
+  tracksEl.style.setProperty('--kick', b.kick.toFixed(3));
+  const o = range(p, 0.25, 0.4);
   vinylLinks.style.setProperty('--o', o);
   vinylLinks.style.setProperty('--pe', o > 0.5 ? 'auto' : 'none');
   drawVinyl(p, t, b);
+  drawWaves(b);
 }
 
 /* ---------- 7. Idézet ---------- */
@@ -629,7 +617,7 @@ form.addEventListener('submit', (e) => {
     if (!ok) valid = false;
   });
   if (!valid) {
-    status.textContent = 'Kérlek, tölts ki minden mezőt helyesen!';
+    status.textContent = 'Please fill in every field correctly.';
     status.className = 'form__status err';
     return;
   }
@@ -637,7 +625,7 @@ form.addEventListener('submit', (e) => {
   const subject = `${d.type} – ${d.name}`;
   const body = `${d.message}\n\n${d.name}\n${d.email}`;
   window.location.href = `mailto:${bookingEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  status.textContent = 'Köszi! Megnyílt a leveleződ – csak küldd el az üzenetet.';
+  status.textContent = 'Thanks! Your mail app just opened — just hit send.';
   status.className = 'form__status ok';
 });
 

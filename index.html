@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emberline Heating &amp; Air</title>
+  <meta name="description" content="Scroll into the vent, down the ductwork and into the furnace. See what's really heating your home, and what's keeping it cold.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <a class="brand" href="#top" aria-label="Emberline Heating &amp; Air, home">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="6.5" fill="currentColor"/>
+      <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <path d="M16 2.5v4M16 25.5v4M2.5 16h4M25.5 16h4M6.4 6.4l2.9 2.9M22.7 22.7l2.9 2.9M6.4 25.6l2.9-2.9M22.7 9.3l2.9-2.9"/>
+      </g>
+    </svg>
+    <span class="brand-text">Emberline<small>Heating &amp; Air</small></span>
+  </a>
+  <nav class="nav" aria-label="Main">
+    <a href="#thermostat">Thermostat</a>
+    <a href="#tune-ups">Tune-ups</a>
+    <a href="#systems">New system</a>
+    <a href="#repair">Repair or replace</a>
+    <a href="#plans">Plans</a>
+  </nav>
+  <button class="btn-outline" type="button" data-book>Book a tech</button>
+</header>
+
+<!-- ============ SCROLL STORY ============ -->
+<section class="story" id="story" aria-label="Follow the airflow">
+  <div class="stage">
+
+    <div class="scene" data-art="house" data-zoom="0.5" data-origin="50% 60%">
+      <div class="art"></div>
+      <canvas class="snow" aria-hidden="true"></canvas>
+      <div class="scrim"></div>
+      <div class="copy copy-hero">
+        <p class="eyebrow">Emberline Heating &amp; Air · Since 1998</p>
+        <h1>Ride the <em>airflow.</em></h1>
+        <p>Scroll into the vent, down the ductwork and into the furnace. See what's really heating your home, and what's keeping it cold.</p>
+        <div class="hero-actions">
+          <a class="btn-play" href="#scene-room"><span class="play" aria-hidden="true"></span>Ride the airflow</a>
+          <a class="link-arrow" href="#" data-book>or book a tune-up →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene" data-art="room-cold" data-zoom="2.6" data-origin="27% 79%" data-temp="61" data-place="Living room">
+      <div class="art"></div>
+      <div class="scrim"></div>
+      <div class="copy">
+        <p class="eyebrow">7:02 AM · Thermostat says 68°</p>
+        <h2>Frost. On the inside of the glass.</h2>
+        <p>The thermostat says one thing, the room says another. Let's follow the air and find out why.</p>
+      </div>
+    </div>
+
+    <div class="scene" data-art="vent" data-zoom="7" data-origin="50% 68%" data-temp="61" data-place="Floor register">
+      <div class="art"></div>
+    </div>
+
+    <div class="scene" data-art="duct" data-zoom="0.6" data-origin="50% 50%" data-temp="62" data-place="Supply duct">
+      <div class="art"></div>
+      <div class="scrim"></div>
+      <div class="copy">
+        <p class="eyebrow">Ductwork</p>
+        <h2>Up to 30% never makes it.</h2>
+        <p>In a typical house, 20–30% of the air moving through the ducts is lost to leaks, holes and loose joints (ENERGY STAR). We find them and seal them.</p>
+      </div>
+    </div>
+
+    <div class="scene" data-art="outside" data-zoom="0.25" data-origin="50% 45%">
+      <div class="art"></div>
+      <div class="scrim"></div>
+      <div class="copy">
+        <p class="eyebrow">Outside unit</p>
+        <h2>Now the other half.</h2>
+        <p>Your heat pump or AC lives outside all year: leaves, pollen, ice and summer storms. Here's what we look at.</p>
+      </div>
+    </div>
+
+    <div class="scene scene-exploded" data-art="exploded" data-zoom="0" data-origin="50% 50%">
+      <span class="anchor" id="tune-ups"></span>
+      <div class="art"></div>
+      <div class="scrim scrim-right"></div>
+      <div class="checklist" aria-label="21-point tune-up">
+        <div class="checklist-head"><span>21-point tune-up</span><span class="checklist-count">0/8</span></div>
+        <ul>
+          <li>Clean condenser coil</li>
+          <li>Check refrigerant charge</li>
+          <li>Test capacitor + contactor</li>
+          <li>Measure motor amp draw</li>
+          <li>Tighten electrical connections</li>
+          <li>Clear drain line</li>
+          <li>Inspect heat exchanger</li>
+          <li>Test CO + safety switches</li>
+        </ul>
+      </div>
+      <div class="copy copy-right">
+        <p class="eyebrow">Tune-up</p>
+        <h2>Every part, checked.</h2>
+        <p>We take the whole unit apart in our heads, and the parts that matter with our hands.</p>
+      </div>
+    </div>
+
+    <div class="scene" data-art="furnace" data-zoom="3" data-origin="50% 42%" data-temp="66" data-place="Furnace">
+      <div class="art"></div>
+      <div class="scrim scrim-right"></div>
+      <div class="copy copy-right">
+        <p class="eyebrow">Burners</p>
+        <h2>Blue flame. Good sign.</h2>
+        <p>Steady blue flames mean clean, efficient combustion. Lazy yellow flames mean it's time for a tune-up and a check of your CO detector.</p>
+      </div>
+    </div>
+
+    <div class="scene" data-art="room-warm" data-zoom="0" data-origin="50% 50%" data-temp="70" data-place="Living room">
+      <div class="art"></div>
+      <div class="scrim"></div>
+      <div class="copy">
+        <p class="eyebrow">Same room · 7:02 AM</p>
+        <h2>Warm. Finally.</h2>
+        <p>Sealed ducts, a clean filter and a tuned burner. Same thermostat setting, every room actually gets there.</p>
+        <a class="btn" href="#" data-book>Book a tune-up</a>
+      </div>
+    </div>
+
+    <div class="temp-badge" aria-live="off">
+      <span class="temp-bar"><i></i></span>
+      <span class="temp-label">Indoor temp</span>
+      <span class="temp-value">61°</span>
+      <span class="temp-place">Living room</span>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">Scroll</div>
+  </div>
+  <span class="anchor" id="scene-room"></span>
+</section>
+
+<main class="content">
+
+  <!-- ============ THERMOSTAT DIAL ============ -->
+  <section class="section" id="thermostat">
+    <div class="wrap">
+      <p class="eyebrow">Try it</p>
+      <h2 class="title">Turn up the heat.</h2>
+      <p class="lede">Drag the dial. This is the same room, before and after a properly tuned, balanced system.</p>
+
+      <div class="dial-card">
+        <div class="dial-room" data-art="room-dial"></div>
+        <div class="dial-tint-cold"></div>
+        <div class="dial-tint-warm"></div>
+        <div class="dial-frost"></div>
+        <div class="dial-status">
+          <span class="eyebrow dial-status-tag">Sweater weather</span>
+          <span class="dial-status-text">Better. Still a draft by the windows.</span>
+        </div>
+        <div class="dial">
+          <svg viewBox="0 0 200 200" class="dial-svg" role="slider" tabindex="0"
+               aria-label="Thermostat set temperature" aria-valuemin="58" aria-valuemax="74" aria-valuenow="63">
+            <circle cx="100" cy="100" r="92" class="dial-body"/>
+            <path class="dial-track" d=""/>
+            <path class="dial-fill" d=""/>
+            <circle class="dial-knob" r="8" cx="0" cy="0"/>
+            <text x="100" y="72" class="dial-mode">HEAT · SET TO</text>
+            <text x="100" y="122" class="dial-temp">63°</text>
+            <text x="100" y="146" class="dial-sub">HEATING</text>
+          </svg>
+          <div class="dial-buttons">
+            <button type="button" class="dial-btn" data-step="-1" aria-label="Lower temperature">−</button>
+            <button type="button" class="dial-btn" data-step="1" aria-label="Raise temperature">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dial-foot">
+        <p>House stuck at “Frost on the glass” no matter what the thermostat says? That's usually airflow, not the thermostat.</p>
+        <a class="btn" href="#" data-book>Fix my cold rooms</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FILTER CHECK ============ -->
+  <section class="section" id="filter">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Quick check</p>
+        <h2 class="title">When did you last change this?</h2>
+        <p class="lede">A clogged filter chokes airflow. The furnace runs longer, rooms at the end of the duct run stay cold, and the blower motor works harder than it should. Drag the line.</p>
+        <div class="stats">
+          <div><strong>1–3 mo</strong><span>1-inch filters</span></div>
+          <div><strong>6–12 mo</strong><span>4–5 inch media</span></div>
+          <div><strong>Monthly</strong><span>Pets or allergies</span></div>
+        </div>
+        <p class="fine">General guide. Your filter's box has the maker's number.</p>
+      </div>
+      <div class="compare" style="--pos:50%">
+        <div class="compare-layer compare-clean" data-art="filter-clean"></div>
+        <div class="compare-layer compare-dirty" data-art="filter-dirty"></div>
+        <span class="compare-tag compare-tag-dirty">12 months, never changed</span>
+        <span class="compare-tag compare-tag-clean">Fresh filter</span>
+        <div class="compare-line" aria-hidden="true"><span>‹ ›</span></div>
+        <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare dirty and clean filter">
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><span>Plan your system · Plan your system · Plan your system · Plan your system ·&nbsp;</span><span>Plan your system · Plan your system · Plan your system · Plan your system ·&nbsp;</span></div>
+
+  <!-- ============ SYSTEMS ============ -->
+  <section class="section" id="systems">
+    <div class="wrap">
+      <p class="eyebrow">New system</p>
+      <h2 class="title">Which one fits your house?</h2>
+      <div class="chips" role="tablist" aria-label="System type">
+        <button class="chip is-on" role="tab" aria-selected="true" data-system="furnace">Gas furnace</button>
+        <button class="chip" role="tab" aria-selected="false" data-system="heatpump">Heat pump</button>
+        <button class="chip" role="tab" aria-selected="false" data-system="minisplit">Ductless mini-split</button>
+      </div>
+      <div class="system" role="tabpanel">
+        <div class="system-art"></div>
+        <div class="system-info">
+          <p class="eyebrow system-kicker"></p>
+          <h3 class="system-name"></h3>
+          <p class="system-best"></p>
+          <div class="stats system-stats"></div>
+          <a class="btn system-cta" href="#" data-book></a>
+          <p class="fine">*Ballpark ranges for this demo. Real prices come after a free in-home visit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REPAIR OR REPLACE ============ -->
+  <section class="section" id="repair">
+    <div class="wrap">
+      <p class="eyebrow">Honest answer</p>
+      <h2 class="title">Repair it, or replace it?</h2>
+      <p class="lede">The rule techs use: multiply the system's age by the repair quote. Over $5,000, replacing usually wins. Try yours.</p>
+
+      <div class="calc">
+        <form class="calc-in panel" onsubmit="return false">
+          <p class="label">System</p>
+          <div class="chips chips-sm" data-group="system">
+            <button type="button" class="chip" data-v="furnace">Furnace</button>
+            <button type="button" class="chip is-on" data-v="heatpump">Heat pump</button>
+            <button type="button" class="chip" data-v="ac">Central AC</button>
+          </div>
+
+          <label class="range-row">
+            <span class="label">Age</span><output class="calc-age-out">7 yrs</output>
+            <input type="range" class="calc-age" min="1" max="25" value="7">
+          </label>
+          <label class="range-row">
+            <span class="label">Repair quote</span><output class="calc-quote-out">$800</output>
+            <input type="range" class="calc-quote" min="100" max="4000" step="50" value="800">
+          </label>
+
+          <p class="label">Anything else going on?</p>
+          <div class="chips chips-sm chips-multi" data-group="symptoms">
+            <button type="button" class="chip">Bills keep climbing</button>
+            <button type="button" class="chip">Some rooms stay cold</button>
+            <button type="button" class="chip">Loud or new noises</button>
+            <button type="button" class="chip">Repaired in the last 2 yrs</button>
+            <button type="button" class="chip">Turns on and off a lot</button>
+          </div>
+        </form>
+
+        <div class="calc-out panel" aria-live="polite">
+          <p class="label">Our read</p>
+          <p class="verdict">Time to replace</p>
+          <div class="meter"><i></i><b></b></div>
+          <div class="meter-labels"><span>Repair</span><span>Replace</span></div>
+          <p class="verdict-why"></p>
+          <a class="btn btn-block" href="#" data-book>Get a free second opinion</a>
+          <p class="fine center">A rule of thumb, not a quote. We'll tell you straight either way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLANS ============ -->
+  <section class="section" id="plans">
+    <div class="wrap">
+      <p class="eyebrow">Plans</p>
+      <h2 class="title">Stay ahead of the cold.</h2>
+      <div class="plans">
+        <article class="panel plan">
+          <h3>Tune-up</h3>
+          <p class="price">$129<small> one visit</small></p>
+          <ul><li>21-point furnace or AC check</li><li>Burner, coil and filter service</li><li>Written report with photos</li></ul>
+          <a class="btn-outline" href="#" data-book>Book a tune-up</a>
+        </article>
+        <article class="panel plan plan-hot">
+          <span class="plan-flag">Most picked</span>
+          <h3>Comfort Club</h3>
+          <p class="price">$19<small> / month</small></p>
+          <ul><li>Spring AC + fall furnace tune-up</li><li>Priority, same-day scheduling</li><li>15% off any repair</li><li>Filters delivered on schedule</li></ul>
+          <a class="btn" href="#" data-book>Join the club</a>
+        </article>
+        <article class="panel plan">
+          <h3>Total Care</h3>
+          <p class="price">$39<small> / month</small></p>
+          <ul><li>Everything in Comfort Club</li><li>Covered parts + labor on repairs</li><li>No overtime or holiday fees</li><li>Duct leak check every 3 years</li></ul>
+          <a class="btn-outline" href="#" data-book>Get Total Care</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <div>
+        <p class="brand-text">Emberline<small>Heating &amp; Air</small></p>
+        <p class="fine">Heating, cooling and ductwork. Licensed, insured, and on call when it's 4° outside.</p>
+      </div>
+      <p class="fine">Demo site. Brand, prices and figures are illustrative.</p>
+    </div>
+  </footer>
+</main>
+
+<div class="dock">
+  <div>
+    <span class="eyebrow">No heat? Same-day service</span>
+    <strong>Tune-ups from $129</strong>
+  </div>
+  <button class="btn btn-sm" type="button" data-book>Book a tech</button>
+</div>
+
+<dialog class="book" id="book">
+  <form method="dialog" class="book-form">
+    <button class="book-x" value="cancel" formnovalidate aria-label="Close">×</button>
+    <p class="eyebrow">Book a tech</p>
+    <h3>We'll call you back within the hour.</h3>
+    <label>Name<input name="name" required autocomplete="name"></label>
+    <label>Phone<input name="phone" type="tel" required autocomplete="tel"></label>
+    <label>What's going on?
+      <select name="issue">
+        <option>No heat</option><option>Some rooms stay cold</option><option>Tune-up</option><option>New system quote</option><option>Something else</option>
+      </select>
+    </label>
+    <button class="btn btn-block" value="ok">Request a call</button>
+    <p class="fine book-done" hidden>Thanks! This is a demo, so nobody will call, but that's exactly how it would work.</p>
+  </form>
+</dialog>
+
+<script src="js/art.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

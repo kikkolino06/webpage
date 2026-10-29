@@ -1,6 +1,8 @@
-# Rink Draft
+# Rink Report
 
-A free fantasy hockey game built around NHL players. You snake-draft three forwards, two defensemen and a goalie against three computer GMs. Then you play a 9-week simulated season, and the top two teams meet in a final.
+An independent fan guide to the NHL: all 32 teams, how the season and playoffs work, Stanley Cup history, rules and awards. It also has Rink Draft, a fantasy hockey game where you snake-draft six players against three computer GMs and play a simulated season.
+
+Live scores, standings and stats link out to NHL.com instead of being copied here.
 
 This is a plain static site: HTML, CSS and vanilla JavaScript. There's no build step and no backend.
 
@@ -8,12 +10,15 @@ This is a plain static site: HTML, CSS and vanilla JavaScript. There's no build 
 
 | File | What it is |
 | --- | --- |
-| `index.html` | The whole site: hero, draft room, season, rules, hockey basics |
-| `draft.js` | The fantasy game: snake draft, computer GMs, weekly simulation, standings, final |
-| `players.js` | Player pool and game ratings |
+| `index.html` | Home: league at a glance, links to live data, site sections |
+| `teams.html` | All 32 teams by division, with city and arena |
+| `league.html` | Season format, standings points, overtime, playoffs, draft, cap |
+| `history.html` | Stanley Cup Finals since 2015, Original Six, most Cups |
+| `rules.html` | Positions, basic rules, major awards |
+| `fantasy.html` + `draft.js` | The Rink Draft fantasy game |
+| `players.js` | Fantasy player pool and game ratings |
 | `terms.html`, `privacy.html` | Terms & Conditions and Privacy Policy |
-| `favicon.svg` | Site icon |
-| `styles.css` | All styles |
+| `favicon.svg`, `styles.css` | Icon and styles |
 
 ## Run locally
 
@@ -37,4 +42,4 @@ Edit `players.js`. `off`/`def` (skaters) and `sv` (goalies) are 1-99 ratings tha
 
 ## Disclaimer
 
-Fan project, not affiliated with or endorsed by the NHL.
+Fan project, not affiliated with or endorsed by the NHL. Team, arena and history facts should be checked against NHL.com once a season, since arenas get renamed and new champions are crowned.

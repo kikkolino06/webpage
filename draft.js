@@ -32,7 +32,7 @@
 
   PLAYERS.forEach((p) => { p.proj = p.pos === "G" ? projGoalie(p) : projSkater(p); });
 
-  // Value over replacement: compare each player to the last starter at his position.
+  // Value over replacement: compare each player to the last starter at that position.
   const REPLACEMENT = {};
   for (const pos of Object.keys(NEEDS)) {
     const sorted = PLAYERS.filter((p) => p.pos === pos).map((p) => p.proj).sort((a, b) => b - a);

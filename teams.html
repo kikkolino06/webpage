@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>NHL Teams | Rink Report</title>
+  <meta name="description" content="All 32 NHL teams by conference and division, with home cities and arenas.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&amp;family=Saira+Extra+Condensed:wght@700;800&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><img src="favicon.svg" alt="">Rink Report</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="teams.html" aria-current="page">Teams</a>
+        <a href="league.html">League</a>
+        <a href="history.html">History</a>
+        <a href="rules.html">Rules</a>
+        <a href="fantasy.html">Fantasy</a>
+      </nav>
+    </div>
+  </header>
+  <nav class="teambar" aria-label="All 32 teams"><div class="wrap"><a href="teams.html#bos" style="background:#FFB81C;color:#0c1a26" title="Boston Bruins">BOS</a><a href="teams.html#buf" style="background:#003087;color:#ffffff" title="Buffalo Sabres">BUF</a><a href="teams.html#det" style="background:#CE1126;color:#ffffff" title="Detroit Red Wings">DET</a><a href="teams.html#fla" style="background:#C8102E;color:#ffffff" title="Florida Panthers">FLA</a><a href="teams.html#mtl" style="background:#AF1E2D;color:#ffffff" title="Montreal Canadiens">MTL</a><a href="teams.html#ott" style="background:#C52032;color:#ffffff" title="Ottawa Senators">OTT</a><a href="teams.html#tbl" style="background:#002868;color:#ffffff" title="Tampa Bay Lightning">TBL</a><a href="teams.html#tor" style="background:#00205B;color:#ffffff" title="Toronto Maple Leafs">TOR</a><a href="teams.html#car" style="background:#CE1126;color:#ffffff" title="Carolina Hurricanes">CAR</a><a href="teams.html#cbj" style="background:#002654;color:#ffffff" title="Columbus Blue Jackets">CBJ</a><a href="teams.html#njd" style="background:#CE1126;color:#ffffff" title="New Jersey Devils">NJD</a><a href="teams.html#nyi" style="background:#00539B;color:#ffffff" title="New York Islanders">NYI</a><a href="teams.html#nyr" style="background:#0038A8;color:#ffffff" title="New York Rangers">NYR</a><a href="teams.html#phi" style="background:#F74902;color:#ffffff" title="Philadelphia Flyers">PHI</a><a href="teams.html#pit" style="background:#000000;color:#ffffff" title="Pittsburgh Penguins">PIT</a><a href="teams.html#wsh" style="background:#041E42;color:#ffffff" title="Washington Capitals">WSH</a><a href="teams.html#chi" style="background:#CF0A2C;color:#ffffff" title="Chicago Blackhawks">CHI</a><a href="teams.html#col" style="background:#6F263D;color:#ffffff" title="Colorado Avalanche">COL</a><a href="teams.html#dal" style="background:#006847;color:#ffffff" title="Dallas Stars">DAL</a><a href="teams.html#min" style="background:#154734;color:#ffffff" title="Minnesota Wild">MIN</a><a href="teams.html#nsh" style="background:#FFB81C;color:#0c1a26" title="Nashville Predators">NSH</a><a href="teams.html#stl" style="background:#002F87;color:#ffffff" title="St. Louis Blues">STL</a><a href="teams.html#uta" style="background:#6CACE4;color:#0c1a26" title="Utah Mammoth">UTA</a><a href="teams.html#wpg" style="background:#041E42;color:#ffffff" title="Winnipeg Jets">WPG</a><a href="teams.html#ana" style="background:#F47A38;color:#0c1a26" title="Anaheim Ducks">ANA</a><a href="teams.html#cgy" style="background:#C8102E;color:#ffffff" title="Calgary Flames">CGY</a><a href="teams.html#edm" style="background:#041E42;color:#ffffff" title="Edmonton Oilers">EDM</a><a href="teams.html#lak" style="background:#111111;color:#ffffff" title="Los Angeles Kings">LAK</a><a href="teams.html#sjs" style="background:#006D75;color:#ffffff" title="San Jose Sharks">SJS</a><a href="teams.html#sea" style="background:#001628;color:#ffffff" title="Seattle Kraken">SEA</a><a href="teams.html#van" style="background:#00205B;color:#ffffff" title="Vancouver Canucks">VAN</a><a href="teams.html#vgk" style="background:#B4975A;color:#0c1a26" title="Vegas Golden Knights">VGK</a></div></nav>
+
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">Teams</p>
+        <h1>All 32 NHL teams</h1>
+        <p class="lead">Sixteen teams in each conference, eight in each division. Arena names are as of the start of the 2025-26 season; sponsors rename buildings often, so check the team site before you buy tickets.</p>
+      </div>
+    </section>
+    <div class="boards" aria-hidden="true"></div>
+    <div class="wrap teams-wrap">
+      <section class="division">
+        <h2><span class="conf">Eastern Conference</span> Atlantic Division</h2>
+        <div class="team-grid">
+          <article class="team" id="bos">
+            <div class="stripe" style="background:linear-gradient(90deg,#FFB81C 0 70%,#000000 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">BOS</span>
+              <h3>Boston Bruins</h3>
+              <dl>
+                <dt>City</dt><dd>Boston, MA</dd>
+                <dt>Arena</dt><dd>TD Garden</dd>
+              </dl>
+              <a href="https://www.nhl.com/bruins">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="buf">
+            <div class="stripe" style="background:linear-gradient(90deg,#003087 0 70%,#FFB81C 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">BUF</span>
+              <h3>Buffalo Sabres</h3>
+              <dl>
+                <dt>City</dt><dd>Buffalo, NY</dd>
+                <dt>Arena</dt><dd>KeyBank Center</dd>
+              </dl>
+              <a href="https://www.nhl.com/sabres">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="det">
+            <div class="stripe" style="background:linear-gradient(90deg,#CE1126 0 70%,#FFFFFF 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">DET</span>
+              <h3>Detroit Red Wings</h3>
+              <dl>
+                <dt>City</dt><dd>Detroit, MI</dd>
+                <dt>Arena</dt><dd>Little Caesars Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/redwings">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="fla">
+            <div class="stripe" style="background:linear-gradient(90deg,#C8102E 0 70%,#041E42 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">FLA</span>
+              <h3>Florida Panthers</h3>
+              <dl>
+                <dt>City</dt><dd>Sunrise, FL</dd>
+                <dt>Arena</dt><dd>Amerant Bank Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/panthers">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="mtl">
+            <div class="stripe" style="background:linear-gradient(90deg,#AF1E2D 0 70%,#192168 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">MTL</span>
+              <h3>Montreal Canadiens</h3>
+              <dl>
+                <dt>City</dt><dd>Montreal, QC</dd>
+                <dt>Arena</dt><dd>Bell Centre</dd>
+              </dl>
+              <a href="https://www.nhl.com/canadiens">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="ott">
+            <div class="stripe" style="background:linear-gradient(90deg,#C52032 0 70%,#000000 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">OTT</span>
+              <h3>Ottawa Senators</h3>
+              <dl>
+                <dt>City</dt><dd>Ottawa, ON</dd>
+                <dt>Arena</dt><dd>Canadian Tire Centre</dd>
+              </dl>
+              <a href="https://www.nhl.com/senators">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="tbl">
+            <div class="stripe" style="background:linear-gradient(90deg,#002868 0 70%,#FFFFFF 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">TBL</span>
+              <h3>Tampa Bay Lightning</h3>
+              <dl>
+                <dt>City</dt><dd>Tampa, FL</dd>
+                <dt>Arena</dt><dd>Benchmark International Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/lightning">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="tor">
+            <div class="stripe" style="background:linear-gradient(90deg,#00205B 0 70%,#FFFFFF 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">TOR</span>
+              <h3>Toronto Maple Leafs</h3>
+              <dl>
+                <dt>City</dt><dd>Toronto, ON</dd>
+                <dt>Arena</dt><dd>Scotiabank Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/mapleleafs">Official team site</a>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="division">
+        <h2><span class="conf">Eastern Conference</span> Metropolitan Division</h2>
+        <div class="team-grid">
+          <article class="team" id="car">
+            <div class="stripe" style="background:linear-gradient(90deg,#CE1126 0 70%,#000000 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">CAR</span>
+              <h3>Carolina Hurricanes</h3>
+              <dl>
+                <dt>City</dt><dd>Raleigh, NC</dd>
+                <dt>Arena</dt><dd>Lenovo Center</dd>
+              </dl>
+              <a href="https://www.nhl.com/hurricanes">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="cbj">
+            <div class="stripe" style="background:linear-gradient(90deg,#002654 0 70%,#CE1126 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">CBJ</span>
+              <h3>Columbus Blue Jackets</h3>
+              <dl>
+                <dt>City</dt><dd>Columbus, OH</dd>
+                <dt>Arena</dt><dd>Nationwide Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/bluejackets">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="njd">
+            <div class="stripe" style="background:linear-gradient(90deg,#CE1126 0 70%,#000000 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">NJD</span>
+              <h3>New Jersey Devils</h3>
+              <dl>
+                <dt>City</dt><dd>Newark, NJ</dd>
+                <dt>Arena</dt><dd>Prudential Center</dd>
+              </dl>
+              <a href="https://www.nhl.com/devils">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="nyi">
+            <div class="stripe" style="background:linear-gradient(90deg,#00539B 0 70%,#F47D30 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">NYI</span>
+              <h3>New York Islanders</h3>
+              <dl>
+                <dt>City</dt><dd>Elmont, NY</dd>
+                <dt>Arena</dt><dd>UBS Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/islanders">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="nyr">
+            <div class="stripe" style="background:linear-gradient(90deg,#0038A8 0 70%,#CE1126 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">NYR</span>
+              <h3>New York Rangers</h3>
+              <dl>
+                <dt>City</dt><dd>New York, NY</dd>
+                <dt>Arena</dt><dd>Madison Square Garden</dd>
+              </dl>
+              <a href="https://www.nhl.com/rangers">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="phi">
+            <div class="stripe" style="background:linear-gradient(90deg,#F74902 0 70%,#000000 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">PHI</span>
+              <h3>Philadelphia Flyers</h3>
+              <dl>
+                <dt>City</dt><dd>Philadelphia, PA</dd>
+                <dt>Arena</dt><dd>Xfinity Mobile Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/flyers">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="pit">
+            <div class="stripe" style="background:linear-gradient(90deg,#000000 0 70%,#FCB514 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">PIT</span>
+              <h3>Pittsburgh Penguins</h3>
+              <dl>
+                <dt>City</dt><dd>Pittsburgh, PA</dd>
+                <dt>Arena</dt><dd>PPG Paints Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/penguins">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="wsh">
+            <div class="stripe" style="background:linear-gradient(90deg,#041E42 0 70%,#C8102E 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">WSH</span>
+              <h3>Washington Capitals</h3>
+              <dl>
+                <dt>City</dt><dd>Washington, DC</dd>
+                <dt>Arena</dt><dd>Capital One Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/capitals">Official team site</a>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="division">
+        <h2><span class="conf">Western Conference</span> Central Division</h2>
+        <div class="team-grid">
+          <article class="team" id="chi">
+            <div class="stripe" style="background:linear-gradient(90deg,#CF0A2C 0 70%,#000000 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">CHI</span>
+              <h3>Chicago Blackhawks</h3>
+              <dl>
+                <dt>City</dt><dd>Chicago, IL</dd>
+                <dt>Arena</dt><dd>United Center</dd>
+              </dl>
+              <a href="https://www.nhl.com/blackhawks">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="col">
+            <div class="stripe" style="background:linear-gradient(90deg,#6F263D 0 70%,#236192 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">COL</span>
+              <h3>Colorado Avalanche</h3>
+              <dl>
+                <dt>City</dt><dd>Denver, CO</dd>
+                <dt>Arena</dt><dd>Ball Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/avalanche">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="dal">
+            <div class="stripe" style="background:linear-gradient(90deg,#006847 0 70%,#8F8F8C 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">DAL</span>
+              <h3>Dallas Stars</h3>
+              <dl>
+                <dt>City</dt><dd>Dallas, TX</dd>
+                <dt>Arena</dt><dd>American Airlines Center</dd>
+              </dl>
+              <a href="https://www.nhl.com/stars">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="min">
+            <div class="stripe" style="background:linear-gradient(90deg,#154734 0 70%,#A6192E 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">MIN</span>
+              <h3>Minnesota Wild</h3>
+              <dl>
+                <dt>City</dt><dd>St. Paul, MN</dd>
+                <dt>Arena</dt><dd>Grand Casino Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/wild">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="nsh">
+            <div class="stripe" style="background:linear-gradient(90deg,#FFB81C 0 70%,#041E42 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">NSH</span>
+              <h3>Nashville Predators</h3>
+              <dl>
+                <dt>City</dt><dd>Nashville, TN</dd>
+                <dt>Arena</dt><dd>Bridgestone Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/predators">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="stl">
+            <div class="stripe" style="background:linear-gradient(90deg,#002F87 0 70%,#FCB514 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">STL</span>
+              <h3>St. Louis Blues</h3>
+              <dl>
+                <dt>City</dt><dd>St. Louis, MO</dd>
+                <dt>Arena</dt><dd>Enterprise Center</dd>
+              </dl>
+              <a href="https://www.nhl.com/blues">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="uta">
+            <div class="stripe" style="background:linear-gradient(90deg,#6CACE4 0 70%,#010101 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">UTA</span>
+              <h3>Utah Mammoth</h3>
+              <dl>
+                <dt>City</dt><dd>Salt Lake City, UT</dd>
+                <dt>Arena</dt><dd>Delta Center</dd>
+              </dl>
+              <a href="https://www.nhl.com/utah">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="wpg">
+            <div class="stripe" style="background:linear-gradient(90deg,#041E42 0 70%,#AC162C 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">WPG</span>
+              <h3>Winnipeg Jets</h3>
+              <dl>
+                <dt>City</dt><dd>Winnipeg, MB</dd>
+                <dt>Arena</dt><dd>Canada Life Centre</dd>
+              </dl>
+              <a href="https://www.nhl.com/jets">Official team site</a>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="division">
+        <h2><span class="conf">Western Conference</span> Pacific Division</h2>
+        <div class="team-grid">
+          <article class="team" id="ana">
+            <div class="stripe" style="background:linear-gradient(90deg,#F47A38 0 70%,#B9975B 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">ANA</span>
+              <h3>Anaheim Ducks</h3>
+              <dl>
+                <dt>City</dt><dd>Anaheim, CA</dd>
+                <dt>Arena</dt><dd>Honda Center</dd>
+              </dl>
+              <a href="https://www.nhl.com/ducks">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="cgy">
+            <div class="stripe" style="background:linear-gradient(90deg,#C8102E 0 70%,#F1BE48 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">CGY</span>
+              <h3>Calgary Flames</h3>
+              <dl>
+                <dt>City</dt><dd>Calgary, AB</dd>
+                <dt>Arena</dt><dd>Scotiabank Saddledome</dd>
+              </dl>
+              <a href="https://www.nhl.com/flames">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="edm">
+            <div class="stripe" style="background:linear-gradient(90deg,#041E42 0 70%,#FF4C00 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">EDM</span>
+              <h3>Edmonton Oilers</h3>
+              <dl>
+                <dt>City</dt><dd>Edmonton, AB</dd>
+                <dt>Arena</dt><dd>Rogers Place</dd>
+              </dl>
+              <a href="https://www.nhl.com/oilers">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="lak">
+            <div class="stripe" style="background:linear-gradient(90deg,#111111 0 70%,#A2AAAD 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">LAK</span>
+              <h3>Los Angeles Kings</h3>
+              <dl>
+                <dt>City</dt><dd>Los Angeles, CA</dd>
+                <dt>Arena</dt><dd>Crypto.com Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/kings">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="sjs">
+            <div class="stripe" style="background:linear-gradient(90deg,#006D75 0 70%,#EA7200 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">SJS</span>
+              <h3>San Jose Sharks</h3>
+              <dl>
+                <dt>City</dt><dd>San Jose, CA</dd>
+                <dt>Arena</dt><dd>SAP Center</dd>
+              </dl>
+              <a href="https://www.nhl.com/sharks">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="sea">
+            <div class="stripe" style="background:linear-gradient(90deg,#001628 0 70%,#99D9D9 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">SEA</span>
+              <h3>Seattle Kraken</h3>
+              <dl>
+                <dt>City</dt><dd>Seattle, WA</dd>
+                <dt>Arena</dt><dd>Climate Pledge Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/kraken">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="van">
+            <div class="stripe" style="background:linear-gradient(90deg,#00205B 0 70%,#00843D 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">VAN</span>
+              <h3>Vancouver Canucks</h3>
+              <dl>
+                <dt>City</dt><dd>Vancouver, BC</dd>
+                <dt>Arena</dt><dd>Rogers Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/canucks">Official team site</a>
+            </div>
+          </article>
+          <article class="team" id="vgk">
+            <div class="stripe" style="background:linear-gradient(90deg,#B4975A 0 70%,#333F42 70% 100%)"></div>
+            <div class="team-body">
+              <span class="abbr">VGK</span>
+              <h3>Vegas Golden Knights</h3>
+              <dl>
+                <dt>City</dt><dd>Las Vegas, NV</dd>
+                <dt>Arena</dt><dd>T-Mobile Arena</dd>
+              </dl>
+              <a href="https://www.nhl.com/goldenknights">Official team site</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-links">
+        <a href="teams.html">Teams</a>
+        <a href="league.html">League</a>
+        <a href="history.html">History</a>
+        <a href="rules.html">Rules</a>
+        <a href="fantasy.html">Fantasy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <p>Rink Report is an independent fan site. It is not affiliated with or endorsed by the National Hockey League or any of its teams. NHL, team names and player names belong to their respective owners. For official scores and stats, visit <a href="https://www.nhl.com">NHL.com</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rink Draft Fantasy Hockey | Rink Report</title>
+  <meta name="description" content="Snake-draft six NHL players against three computer GMs and play a simulated fantasy season.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&amp;family=Saira+Extra+Condensed:wght@700;800&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><img src="favicon.svg" alt="">Rink Report</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="teams.html">Teams</a>
+        <a href="league.html">League</a>
+        <a href="history.html">History</a>
+        <a href="rules.html">Rules</a>
+        <a href="fantasy.html" aria-current="page">Fantasy</a>
+      </nav>
+    </div>
+  </header>
+  <nav class="teambar" aria-label="All 32 teams"><div class="wrap"><a href="teams.html#bos" style="background:#FFB81C;color:#0c1a26" title="Boston Bruins">BOS</a><a href="teams.html#buf" style="background:#003087;color:#ffffff" title="Buffalo Sabres">BUF</a><a href="teams.html#det" style="background:#CE1126;color:#ffffff" title="Detroit Red Wings">DET</a><a href="teams.html#fla" style="background:#C8102E;color:#ffffff" title="Florida Panthers">FLA</a><a href="teams.html#mtl" style="background:#AF1E2D;color:#ffffff" title="Montreal Canadiens">MTL</a><a href="teams.html#ott" style="background:#C52032;color:#ffffff" title="Ottawa Senators">OTT</a><a href="teams.html#tbl" style="background:#002868;color:#ffffff" title="Tampa Bay Lightning">TBL</a><a href="teams.html#tor" style="background:#00205B;color:#ffffff" title="Toronto Maple Leafs">TOR</a><a href="teams.html#car" style="background:#CE1126;color:#ffffff" title="Carolina Hurricanes">CAR</a><a href="teams.html#cbj" style="background:#002654;color:#ffffff" title="Columbus Blue Jackets">CBJ</a><a href="teams.html#njd" style="background:#CE1126;color:#ffffff" title="New Jersey Devils">NJD</a><a href="teams.html#nyi" style="background:#00539B;color:#ffffff" title="New York Islanders">NYI</a><a href="teams.html#nyr" style="background:#0038A8;color:#ffffff" title="New York Rangers">NYR</a><a href="teams.html#phi" style="background:#F74902;color:#ffffff" title="Philadelphia Flyers">PHI</a><a href="teams.html#pit" style="background:#000000;color:#ffffff" title="Pittsburgh Penguins">PIT</a><a href="teams.html#wsh" style="background:#041E42;color:#ffffff" title="Washington Capitals">WSH</a><a href="teams.html#chi" style="background:#CF0A2C;color:#ffffff" title="Chicago Blackhawks">CHI</a><a href="teams.html#col" style="background:#6F263D;color:#ffffff" title="Colorado Avalanche">COL</a><a href="teams.html#dal" style="background:#006847;color:#ffffff" title="Dallas Stars">DAL</a><a href="teams.html#min" style="background:#154734;color:#ffffff" title="Minnesota Wild">MIN</a><a href="teams.html#nsh" style="background:#FFB81C;color:#0c1a26" title="Nashville Predators">NSH</a><a href="teams.html#stl" style="background:#002F87;color:#ffffff" title="St. Louis Blues">STL</a><a href="teams.html#uta" style="background:#6CACE4;color:#0c1a26" title="Utah Mammoth">UTA</a><a href="teams.html#wpg" style="background:#041E42;color:#ffffff" title="Winnipeg Jets">WPG</a><a href="teams.html#ana" style="background:#F47A38;color:#0c1a26" title="Anaheim Ducks">ANA</a><a href="teams.html#cgy" style="background:#C8102E;color:#ffffff" title="Calgary Flames">CGY</a><a href="teams.html#edm" style="background:#041E42;color:#ffffff" title="Edmonton Oilers">EDM</a><a href="teams.html#lak" style="background:#111111;color:#ffffff" title="Los Angeles Kings">LAK</a><a href="teams.html#sjs" style="background:#006D75;color:#ffffff" title="San Jose Sharks">SJS</a><a href="teams.html#sea" style="background:#001628;color:#ffffff" title="Seattle Kraken">SEA</a><a href="teams.html#van" style="background:#00205B;color:#ffffff" title="Vancouver Canucks">VAN</a><a href="teams.html#vgk" style="background:#B4975A;color:#0c1a26" title="Vegas Golden Knights">VGK</a></div></nav>
+
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">Fantasy</p>
+        <h1>Rink Draft</h1>
+        <p class="lead">Our fantasy hockey game. Snake-draft six NHL players against three computer GMs, then play a simulated 9-week season and a final. It's free and saves in your browser.</p>
+      </div>
+    </section>
+    <div class="boards" aria-hidden="true"></div>
+        <section class="arena" id="draft">
+      <div class="wrap">
+        <p class="eyebrow">Draft room</p>
+        <h2>Snake draft, 6 rounds</h2>
+        <p class="intro">Your draft slot is random. The order reverses every round, so the team that picks last in round 1 picks first in round 2. Every team has to end up with 3 F, 2 D and 1 G.</p>
+
+        <div class="scoreboard" aria-live="polite">
+          <div class="sb-cell"><div class="sb-label">Round</div><div class="sb-value" id="sb-round">-</div></div>
+          <div class="sb-cell"><div class="sb-label">Pick</div><div class="sb-value" id="sb-pick">-</div></div>
+          <div class="sb-cell"><div class="sb-label">Your slot</div><div class="sb-value" id="sb-slot">-</div></div>
+          <div class="sb-cell"><div class="sb-label">On the clock</div><div class="sb-value" id="sb-clock">Waiting to start</div></div>
+        </div>
+
+        <form class="setup" id="setup">
+          <input id="team-name" maxlength="24" placeholder="Name your team" aria-label="Team name" required>
+          <button class="btn" type="submit" id="start-draft">Start the draft</button>
+        </form>
+        <p class="note" id="draft-msg" role="status"></p>
+
+        <div class="room">
+          <div class="pane">
+            <h3>Available players</h3>
+            <div class="filters">
+              <div class="tabs" role="group" aria-label="Filter by position">
+                <button type="button" data-pos="ALL" aria-pressed="true">All</button>
+                <button type="button" data-pos="F" aria-pressed="false">F</button>
+                <button type="button" data-pos="D" aria-pressed="false">D</button>
+                <button type="button" data-pos="G" aria-pressed="false">G</button>
+              </div>
+              <input id="search" type="search" placeholder="Search name or team" aria-label="Search players">
+            </div>
+            <div class="pool scroll">
+              <table>
+                <thead><tr><th>Pos</th><th>Player</th><th>Team</th><th class="num" title="Projected fantasy points per week">Proj</th><th></th></tr></thead>
+                <tbody id="pool-body"></tbody>
+              </table>
+            </div>
+            <p class="note">Proj is the game's projected points per week. It comes from our own player ratings, not official NHL stats.</p>
+          </div>
+
+          <div>
+            <div class="card">
+              <h3 id="card-title">Your lineup card</h3>
+              <div class="sub" id="card-sub">3 F, 2 D, 1 G</div>
+              <div id="card-lines"></div>
+              <div class="card-actions">
+                <button class="btn small" type="button" id="autopick" disabled>Auto-pick for me</button>
+                <button class="btn small ghost" type="button" id="reset">New draft</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="board-wrap">
+          <h3>Draft board</h3>
+          <div class="scroll">
+            <table class="board">
+              <thead id="board-head"></thead>
+              <tbody id="board-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="boards" aria-hidden="true"></div>
+
+    <section class="season" id="season">
+      <div class="wrap">
+        <p class="eyebrow">League</p>
+        <h2>The season</h2>
+        <div id="season-empty" class="empty-state">
+          <p><strong>No season yet.</strong> Finish the draft above and your schedule shows up here.</p>
+          <p>You play each computer team three times over 9 weeks. Each week, every player gets 3 simulated games. The top two teams in the standings then meet in the week 10 final.</p>
+        </div>
+        <div class="season-grid" id="season-grid" hidden>
+          <div>
+            <div class="panel">
+              <h3>Standings</h3>
+              <div class="scroll">
+                <table class="standings">
+                  <thead><tr><th>#</th><th>Team</th><th class="num">W</th><th class="num">L</th><th class="num">T</th><th class="num">PF</th></tr></thead>
+                  <tbody id="standings-body"></tbody>
+                </table>
+              </div>
+              <p class="note">Ties in the standings are broken by total points for (PF).</p>
+            </div>
+            <div class="panel">
+              <h3>Results</h3>
+              <div class="scroll">
+                <table>
+                  <thead><tr><th>Wk</th><th>Opponent</th><th class="num">Score</th></tr></thead>
+                  <tbody id="log-body"></tbody>
+                </table>
+              </div>
+              <p class="note">Click a week to see its box score.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="week-head">
+              <h3 id="week-title">Week 1</h3>
+              <button class="btn" type="button" id="play-week">Play week 1</button>
+            </div>
+            <div id="matchups"></div>
+            <div id="week-detail"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rules" id="rules">
+      <div class="wrap">
+        <p class="eyebrow">Rules</p>
+        <h2>How points work</h2>
+        <div class="rules-grid">
+          <div>
+            <h3>Skaters</h3>
+            <table>
+              <tbody>
+                <tr><td>Goal</td><td class="num">3</td></tr>
+                <tr><td>Assist</td><td class="num">2</td></tr>
+                <tr><td>Shot on goal</td><td class="num">0.5</td></tr>
+                <tr><td>Blocked shot</td><td class="num">0.5</td></tr>
+              </tbody>
+            </table>
+            <h3 style="margin-top:1.2em">Goalies</h3>
+            <table>
+              <tbody>
+                <tr><td>Win</td><td class="num">4</td></tr>
+                <tr><td>Save</td><td class="num">0.2</td></tr>
+                <tr><td>Goal against</td><td class="num">-1</td></tr>
+                <tr><td>Shutout bonus</td><td class="num">3</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <h3>League format</h3>
+            <ul>
+              <li>4 teams: you and three computer GMs.</li>
+              <li>6-round snake draft. Rosters are 3 F, 2 D and 1 G.</li>
+              <li>The computer GMs draft for value and roster need, with a little randomness, so no two drafts go the same way.</li>
+              <li>Weeks 1 to 9 are the regular season. You face each opponent three times.</li>
+              <li>Week 10 is the final between the top two teams.</li>
+              <li>Your league saves in this browser, so you can close the tab and come back later.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Box score terms</h3>
+            <dl class="glossary">
+              <dt>G</dt><dd>Goals</dd>
+              <dt>A</dt><dd>Assists, credited to up to two players on a goal</dd>
+              <dt>SOG</dt><dd>Shots on goal: shots that would have gone in without a save</dd>
+              <dt>BLK</dt><dd>Shots blocked by a skater before they reach the net</dd>
+              <dt>SV</dt><dd>Saves</dd>
+              <dt>GA</dt><dd>Goals against</dd>
+              <dt>SO</dt><dd>Shutout: a win with zero goals allowed</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="callout">
+          <p><strong>About the numbers.</strong> Player ratings and projections in this game are our own estimates, used to balance the draft. They are not official NHL statistics, and weekly results are simulated, not real games. Teams are listed as of the start of the 2025-26 season, so a recent trade may not show yet.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-links">
+        <a href="teams.html">Teams</a>
+        <a href="league.html">League</a>
+        <a href="history.html">History</a>
+        <a href="rules.html">Rules</a>
+        <a href="fantasy.html">Fantasy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <p>Rink Report is an independent fan site. It is not affiliated with or endorsed by the National Hockey League or any of its teams. NHL, team names and player names belong to their respective owners. For official scores and stats, visit <a href="https://www.nhl.com">NHL.com</a>.</p>
+    </div>
+  </footer>
+  <script src="players.js"></script>
+  <script src="draft.js"></script>
+</body>
+</html>

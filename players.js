@@ -1,0 +1,81 @@
+// Player pool for Rink Draft.
+// price is in game dollars (millions) and off/def/sv are 1-99 game ratings.
+// These are our own balancing estimates, not real salaries or official stats.
+// Teams reflect rosters at the start of the 2025-26 season.
+const PLAYERS = [
+  // Forwards
+  { name: "Connor McDavid", team: "EDM", pos: "F", price: 12.5, off: 99, def: 70 },
+  { name: "Nathan MacKinnon", team: "COL", pos: "F", price: 12.0, off: 98, def: 68 },
+  { name: "Nikita Kucherov", team: "TBL", pos: "F", price: 11.5, off: 97, def: 60 },
+  { name: "Leon Draisaitl", team: "EDM", pos: "F", price: 11.5, off: 96, def: 66 },
+  { name: "Auston Matthews", team: "TOR", pos: "F", price: 11.0, off: 95, def: 72 },
+  { name: "David Pastrnak", team: "BOS", pos: "F", price: 10.5, off: 93, def: 58 },
+  { name: "Kirill Kaprizov", team: "MIN", pos: "F", price: 10.5, off: 93, def: 62 },
+  { name: "Mitch Marner", team: "VGK", pos: "F", price: 10.0, off: 91, def: 74 },
+  { name: "Jack Eichel", team: "VGK", pos: "F", price: 10.0, off: 91, def: 73 },
+  { name: "Mikko Rantanen", team: "DAL", pos: "F", price: 10.0, off: 91, def: 62 },
+  { name: "Kyle Connor", team: "WPG", pos: "F", price: 9.5, off: 90, def: 55 },
+  { name: "William Nylander", team: "TOR", pos: "F", price: 9.5, off: 90, def: 57 },
+  { name: "Jack Hughes", team: "NJD", pos: "F", price: 9.5, off: 90, def: 60 },
+  { name: "Sidney Crosby", team: "PIT", pos: "F", price: 9.0, off: 88, def: 75 },
+  { name: "Aleksander Barkov", team: "FLA", pos: "F", price: 9.0, off: 86, def: 92 },
+  { name: "Artemi Panarin", team: "NYR", pos: "F", price: 9.0, off: 88, def: 55 },
+  { name: "Brayden Point", team: "TBL", pos: "F", price: 8.5, off: 87, def: 64 },
+  { name: "Jake Guentzel", team: "TBL", pos: "F", price: 8.5, off: 87, def: 60 },
+  { name: "Matthew Tkachuk", team: "FLA", pos: "F", price: 8.5, off: 86, def: 70 },
+  { name: "Macklin Celebrini", team: "SJS", pos: "F", price: 8.0, off: 86, def: 66 },
+  { name: "Sam Reinhart", team: "FLA", pos: "F", price: 8.0, off: 85, def: 72 },
+  { name: "Jason Robertson", team: "DAL", pos: "F", price: 8.0, off: 85, def: 58 },
+  { name: "Connor Bedard", team: "CHI", pos: "F", price: 7.5, off: 84, def: 50 },
+  { name: "Tage Thompson", team: "BUF", pos: "F", price: 7.5, off: 84, def: 55 },
+  { name: "Brady Tkachuk", team: "OTT", pos: "F", price: 7.5, off: 83, def: 62 },
+  { name: "Nick Suzuki", team: "MTL", pos: "F", price: 7.0, off: 82, def: 70 },
+  { name: "Clayton Keller", team: "UTA", pos: "F", price: 7.0, off: 82, def: 58 },
+  { name: "Alex Ovechkin", team: "WSH", pos: "F", price: 7.0, off: 83, def: 45 },
+  { name: "Cole Caufield", team: "MTL", pos: "F", price: 6.5, off: 81, def: 50 },
+  { name: "Sebastian Aho", team: "CAR", pos: "F", price: 6.5, off: 80, def: 76 },
+  { name: "Matvei Michkov", team: "PHI", pos: "F", price: 6.0, off: 79, def: 48 },
+  { name: "Elias Pettersson", team: "VAN", pos: "F", price: 6.0, off: 78, def: 70 },
+  { name: "Dylan Larkin", team: "DET", pos: "F", price: 6.0, off: 78, def: 66 },
+  { name: "Robert Thomas", team: "STL", pos: "F", price: 5.5, off: 77, def: 68 },
+  { name: "Matt Boldy", team: "MIN", pos: "F", price: 5.5, off: 77, def: 60 },
+  { name: "Adrian Kempe", team: "LAK", pos: "F", price: 5.0, off: 75, def: 62 },
+  { name: "Seth Jarvis", team: "CAR", pos: "F", price: 5.0, off: 74, def: 66 },
+  { name: "Lucas Raymond", team: "DET", pos: "F", price: 5.0, off: 75, def: 55 },
+  { name: "Dylan Guenther", team: "UTA", pos: "F", price: 4.5, off: 73, def: 55 },
+  { name: "Trevor Zegras", team: "PHI", pos: "F", price: 4.0, off: 70, def: 50 },
+
+  // Defensemen
+  { name: "Cale Makar", team: "COL", pos: "D", price: 11.0, off: 90, def: 85 },
+  { name: "Quinn Hughes", team: "VAN", pos: "D", price: 10.0, off: 87, def: 78 },
+  { name: "Zach Werenski", team: "CBJ", pos: "D", price: 9.0, off: 83, def: 74 },
+  { name: "Rasmus Dahlin", team: "BUF", pos: "D", price: 8.0, off: 78, def: 78 },
+  { name: "Victor Hedman", team: "TBL", pos: "D", price: 7.5, off: 75, def: 80 },
+  { name: "Miro Heiskanen", team: "DAL", pos: "D", price: 7.5, off: 72, def: 86 },
+  { name: "Adam Fox", team: "NYR", pos: "D", price: 7.0, off: 74, def: 78 },
+  { name: "Lane Hutson", team: "MTL", pos: "D", price: 6.5, off: 74, def: 64 },
+  { name: "Roman Josi", team: "NSH", pos: "D", price: 6.5, off: 73, def: 72 },
+  { name: "Jake Sanderson", team: "OTT", pos: "D", price: 5.5, off: 66, def: 80 },
+  { name: "Moritz Seider", team: "DET", pos: "D", price: 5.0, off: 60, def: 82 },
+  { name: "Mikhail Sergachev", team: "UTA", pos: "D", price: 5.0, off: 64, def: 72 },
+  { name: "Jaccob Slavin", team: "CAR", pos: "D", price: 4.0, off: 48, def: 90 },
+
+  // Goalies
+  { name: "Connor Hellebuyck", team: "WPG", pos: "G", price: 10.0, sv: 96 },
+  { name: "Andrei Vasilevskiy", team: "TBL", pos: "G", price: 9.0, sv: 93 },
+  { name: "Igor Shesterkin", team: "NYR", pos: "G", price: 8.5, sv: 92 },
+  { name: "Jake Oettinger", team: "DAL", pos: "G", price: 7.0, sv: 87 },
+  { name: "Sergei Bobrovsky", team: "FLA", pos: "G", price: 6.5, sv: 85 },
+  { name: "Ilya Sorokin", team: "NYI", pos: "G", price: 6.5, sv: 86 },
+  { name: "Jeremy Swayman", team: "BOS", pos: "G", price: 5.5, sv: 82 },
+  { name: "Thatcher Demko", team: "VAN", pos: "G", price: 5.0, sv: 80 },
+  { name: "Juuse Saros", team: "NSH", pos: "G", price: 4.5, sv: 78 },
+].map((p, i) => ({ id: i, ...p }));
+
+// Team strength nudges goalie win chances. Rough 1-99 game ratings, our own estimates.
+const TEAM_STRENGTH = {
+  EDM: 82, COL: 84, TBL: 82, TOR: 78, BOS: 70, MIN: 74, VGK: 82, DAL: 83, WPG: 84,
+  NJD: 76, PIT: 62, FLA: 85, NYR: 70, SJS: 52, CHI: 50, BUF: 60, OTT: 72, MTL: 70,
+  UTA: 68, WSH: 80, CAR: 84, PHI: 58, VAN: 70, DET: 64, STL: 70, LAK: 78, CBJ: 66,
+  NSH: 58, NYI: 62,
+};

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rink Draft | Free NHL Fantasy Hockey Game</title>
+  <meta name="description" content="Pick six NHL players under a $50M cap and play a 10-week fantasy season against computer teams. Free, no sign-up.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><img src="favicon.svg" alt="">Rink Draft</a>
+      <nav class="site-nav">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="play.html">Play</a>
+        <a href="#rules">Rules</a>
+        <a href="#basics">Hockey basics</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="wrap">
+        <div>
+          <h1>Build a six-player NHL lineup for $50M and play a 10-week season.</h1>
+          <p class="lead">Pick three forwards, two defensemen and a goalie. Each week your lineup plays three simulated games against a computer team. Most fantasy points wins the week.</p>
+          <p class="lead">It runs in your browser. No account, no email, no ads.</p>
+          <div class="actions">
+            <a class="btn" href="play.html">Start a season</a>
+            <a class="btn secondary" href="#rules">Read the rules</a>
+          </div>
+        </div>
+        <div class="rink" aria-hidden="true">
+          <div class="goal l"></div><div class="center"></div><div class="circle"></div><div class="goal r"></div>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="wrap">
+        <h2>How a season works</h2>
+        <ol class="steps">
+          <li>
+            <h3>Draft your six</h3>
+            <p>Choose from 62 current NHL players. Stars cost more. You can take McDavid, MacKinnon and Kucherov together, but then your defense and goalie come from the bargain bin.</p>
+          </li>
+          <li>
+            <h3>Play a week</h3>
+            <p>Every player on both rosters gets three simulated games. Goals, assists, shots, blocks and saves turn into points.</p>
+          </li>
+          <li>
+            <h3>Tweak and repeat</h3>
+            <p>Swap players between weeks if someone goes cold. After week 10 you get a final record. Then start over and try a different build.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="alt" id="rules">
+      <div class="wrap two-col">
+        <div>
+          <h2>Scoring</h2>
+          <table>
+            <thead><tr><th>Skaters</th><th class="num">Points</th></tr></thead>
+            <tbody>
+              <tr><td>Goal</td><td class="num">3</td></tr>
+              <tr><td>Assist</td><td class="num">2</td></tr>
+              <tr><td>Shot on goal</td><td class="num">0.5</td></tr>
+              <tr><td>Blocked shot</td><td class="num">0.5</td></tr>
+            </tbody>
+          </table>
+          <br>
+          <table>
+            <thead><tr><th>Goalies</th><th class="num">Points</th></tr></thead>
+            <tbody>
+              <tr><td>Win</td><td class="num">4</td></tr>
+              <tr><td>Save</td><td class="num">0.2</td></tr>
+              <tr><td>Goal against</td><td class="num">-1</td></tr>
+              <tr><td>Shutout (bonus)</td><td class="num">3</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h2>Roster rules</h2>
+          <ul>
+            <li>3 forwards (F), 2 defensemen (D), 1 goalie (G).</li>
+            <li>Total price can't go over $50M.</li>
+            <li>Your lineup has to be full before you can play a week.</li>
+            <li>You can change players any time between weeks.</li>
+            <li>Your season saves in this browser, so you can close the tab and come back.</li>
+          </ul>
+          <div class="callout">
+            <p><strong>About the numbers.</strong> The prices and ratings in this game are our own estimates for balancing the draft. They are not real salaries or official NHL statistics, and the weekly results are a simulation, not real games. Teams are listed as of the start of the 2025-26 season, so a recent trade may not show up yet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="basics">
+      <div class="wrap">
+        <h2>New to hockey? The short version</h2>
+        <div class="two-col">
+          <div>
+            <h3>Positions</h3>
+            <p><strong>Forwards</strong> (centers and wingers) do most of the scoring. In this game they're your main source of goals and assists.</p>
+            <p><strong>Defensemen</strong> protect their own net and start the attack. The best ones also rack up assists from the blue line, and they block a lot of shots, which counts here.</p>
+            <p><strong>Goalies</strong> stop the puck. A goalie on a strong team picks up wins; a busy goalie on a weaker team makes more saves. Both can score well.</p>
+          </div>
+          <div>
+            <h3>Quick strategy notes</h3>
+            <p>Paying for one elite forward and filling the rest with mid-priced players usually beats spreading the money evenly.</p>
+            <p>An offensive defenseman can outscore a cheap forward because of the blocked-shot points.</p>
+            <p>Goals against cost a point each, so a cheap goalie can sink a good week. Don't leave yourself $3M for the net.</p>
+            <p>Results are random week to week, like real hockey. Judge your build over the full 10 weeks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <p>Rink Draft is a fan project. It is not affiliated with or endorsed by the National Hockey League. NHL and team names are trademarks of their respective owners.</p>
+    </div>
+  </footer>
+</body>
+</html>

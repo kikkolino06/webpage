@@ -1,6 +1,6 @@
 # Rink Draft
 
-A free fantasy hockey game built around NHL players. You pick three forwards, two defensemen and a goalie under a $50M cap. Then you play a 10-week simulated season against computer teams.
+A free fantasy hockey game built around NHL players. You snake-draft three forwards, two defensemen and a goalie against three computer GMs. Then you play a 9-week simulated season, and the top two teams meet in a final.
 
 This is a plain static site: HTML, CSS and vanilla JavaScript. There's no build step and no backend.
 
@@ -8,9 +8,9 @@ This is a plain static site: HTML, CSS and vanilla JavaScript. There's no build 
 
 | File | What it is |
 | --- | --- |
-| `index.html` | Home page: how it works, scoring, roster rules, hockey basics |
-| `play.html` + `game.js` | The fantasy game (draft, weekly simulation, season log) |
-| `players.js` | Player pool, game prices and ratings |
+| `index.html` | The whole site: hero, draft room, season, rules, hockey basics |
+| `draft.js` | The fantasy game: snake draft, computer GMs, weekly simulation, standings, final |
+| `players.js` | Player pool and game ratings |
 | `terms.html`, `privacy.html` | Terms & Conditions and Privacy Policy |
 | `favicon.svg` | Site icon |
 | `styles.css` | All styles |
@@ -33,7 +33,7 @@ python3 -m http.server 8000
 
 ## Updating players
 
-Edit `players.js`. `price` is in game millions. `off`/`def` (skaters) and `sv` (goalies) are 1-99 ratings that drive the simulation. They are game balancing numbers, not real stats. Update the team codes after trades.
+Edit `players.js`. `off`/`def` (skaters) and `sv` (goalies) are 1-99 ratings that drive the simulation. They are game balancing numbers, not real stats. Update the team codes after trades.
 
 ## Disclaimer
 

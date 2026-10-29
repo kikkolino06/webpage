@@ -2,123 +2,279 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rink Draft | Free NHL Fantasy Hockey Game</title>
-  <meta name="description" content="Pick six NHL players under a $50M cap and play a 10-week fantasy season against computer teams. Free, no sign-up.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rink Draft | Free NHL Fantasy Hockey Draft</title>
+  <meta name="description" content="Snake-draft six NHL players against three computer GMs, then play a simulated 10-week fantasy hockey season. Free, no sign-up.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Saira+Extra+Condensed:wght@700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="wrap">
-      <a class="brand" href="index.html"><img src="favicon.svg" alt="">Rink Draft</a>
-      <nav class="site-nav">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="play.html">Play</a>
+      <a class="brand" href="#top"><img src="favicon.svg" alt="">Rink Draft</a>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="#draft">Draft room</a>
+        <a href="#season">Season</a>
         <a href="#rules">Rules</a>
-        <a href="#basics">Hockey basics</a>
+        <a href="#basics">Hockey 101</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <div class="hero">
+  <main id="top">
+    <section class="hero">
       <div class="wrap">
         <div>
-          <h1>Build a six-player NHL lineup for $50M and play a 10-week season.</h1>
-          <p class="lead">Pick three forwards, two defensemen and a goalie. Each week your lineup plays three simulated games against a computer team. Most fantasy points wins the week.</p>
-          <p class="lead">It runs in your browser. No account, no email, no ads.</p>
+          <p class="eyebrow">Fantasy hockey, 4-team league</p>
+          <h1>Draft six NHL players. Beat three computer GMs.</h1>
+          <p class="lead">It's a snake draft for 3 forwards, 2 defensemen and a goalie. After that comes a 9-week season of simulated games, and the top two teams meet in a one-week final.</p>
+          <p class="lead">Free. It runs in your browser and there's no account to make.</p>
           <div class="actions">
-            <a class="btn" href="play.html">Start a season</a>
-            <a class="btn secondary" href="#rules">Read the rules</a>
+            <a class="btn" href="#draft">Go to the draft room</a>
+            <a class="btn ghost" href="#rules">How scoring works</a>
           </div>
         </div>
-        <div class="rink" aria-hidden="true">
-          <div class="goal l"></div><div class="center"></div><div class="circle"></div><div class="goal r"></div>
-        </div>
-      </div>
-    </div>
-
-    <section>
-      <div class="wrap">
-        <h2>How a season works</h2>
-        <ol class="steps">
-          <li>
-            <h3>Draft your six</h3>
-            <p>Choose from 62 current NHL players. Stars cost more. You can take McDavid, MacKinnon and Kucherov together, but then your defense and goalie come from the bargain bin.</p>
-          </li>
-          <li>
-            <h3>Play a week</h3>
-            <p>Every player on both rosters gets three simulated games. Goals, assists, shots, blocks and saves turn into points.</p>
-          </li>
-          <li>
-            <h3>Tweak and repeat</h3>
-            <p>Swap players between weeks if someone goes cold. After week 10 you get a final record. Then start over and try a different build.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="alt" id="rules">
-      <div class="wrap two-col">
-        <div>
-          <h2>Scoring</h2>
-          <table>
-            <thead><tr><th>Skaters</th><th class="num">Points</th></tr></thead>
-            <tbody>
-              <tr><td>Goal</td><td class="num">3</td></tr>
-              <tr><td>Assist</td><td class="num">2</td></tr>
-              <tr><td>Shot on goal</td><td class="num">0.5</td></tr>
-              <tr><td>Blocked shot</td><td class="num">0.5</td></tr>
-            </tbody>
-          </table>
-          <br>
-          <table>
-            <thead><tr><th>Goalies</th><th class="num">Points</th></tr></thead>
-            <tbody>
-              <tr><td>Win</td><td class="num">4</td></tr>
-              <tr><td>Save</td><td class="num">0.2</td></tr>
-              <tr><td>Goal against</td><td class="num">-1</td></tr>
-              <tr><td>Shutout (bonus)</td><td class="num">3</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div>
-          <h2>Roster rules</h2>
-          <ul>
-            <li>3 forwards (F), 2 defensemen (D), 1 goalie (G).</li>
-            <li>Total price can't go over $50M.</li>
-            <li>Your lineup has to be full before you can play a week.</li>
-            <li>You can change players any time between weeks.</li>
-            <li>Your season saves in this browser, so you can close the tab and come back.</li>
-          </ul>
-          <div class="callout">
-            <p><strong>About the numbers.</strong> The prices and ratings in this game are our own estimates for balancing the draft. They are not real salaries or official NHL statistics, and the weekly results are a simulation, not real games. Teams are listed as of the start of the 2025-26 season, so a recent trade may not show up yet.</p>
-          </div>
-        </div>
+        <figure class="rink-fig">
+          <svg viewBox="-2 -9 204 107" role="img" aria-labelledby="rink-title">
+            <title id="rink-title">Top-down diagram of an NHL rink with the goal lines, blue lines, center red line and faceoff circles labeled</title>
+            <rect class="rk-ice" x="0" y="0" width="200" height="85" rx="28"/>
+            <line class="rk-red" x1="11" y1="5.8" x2="11" y2="79.2" stroke-width="0.5"/>
+            <line class="rk-red" x1="189" y1="5.8" x2="189" y2="79.2" stroke-width="0.5"/>
+            <line class="rk-blue" x1="75" y1="0.6" x2="75" y2="84.4" stroke-width="1.6"/>
+            <line class="rk-blue" x1="125" y1="0.6" x2="125" y2="84.4" stroke-width="1.6"/>
+            <line class="rk-red" x1="100" y1="0.6" x2="100" y2="84.4" stroke-width="1.6" stroke-dasharray="2.4 1"/>
+            <circle class="rk-blue" cx="100" cy="42.5" r="15" stroke-width="0.5"/>
+            <circle cx="100" cy="42.5" r="0.8" fill="var(--blue)"/>
+            <circle class="rk-red" cx="31" cy="20.5" r="15" stroke-width="0.5"/>
+            <circle class="rk-red" cx="31" cy="64.5" r="15" stroke-width="0.5"/>
+            <circle class="rk-red" cx="169" cy="20.5" r="15" stroke-width="0.5"/>
+            <circle class="rk-red" cx="169" cy="64.5" r="15" stroke-width="0.5"/>
+            <circle class="rk-redfill" cx="31" cy="20.5" r="1"/>
+            <circle class="rk-redfill" cx="31" cy="64.5" r="1"/>
+            <circle class="rk-redfill" cx="169" cy="20.5" r="1"/>
+            <circle class="rk-redfill" cx="169" cy="64.5" r="1"/>
+            <circle class="rk-redfill" cx="80" cy="20.5" r="1"/>
+            <circle class="rk-redfill" cx="80" cy="64.5" r="1"/>
+            <circle class="rk-redfill" cx="120" cy="20.5" r="1"/>
+            <circle class="rk-redfill" cx="120" cy="64.5" r="1"/>
+            <path class="rk-crease" d="M11 36.5 A6 6 0 0 1 11 48.5 Z"/>
+            <path class="rk-crease" d="M189 36.5 A6 6 0 0 0 189 48.5 Z"/>
+            <rect x="7" y="39.5" width="4" height="6" fill="none" stroke="var(--ink)" stroke-width="0.5"/>
+            <rect x="189" y="39.5" width="4" height="6" fill="none" stroke="var(--ink)" stroke-width="0.5"/>
+            <line class="rk-tick" x1="11" y1="85" x2="11" y2="89"/>
+            <line class="rk-tick" x1="75" y1="85" x2="75" y2="89"/>
+            <line class="rk-tick" x1="100" y1="-4" x2="100" y2="0"/>
+            <line class="rk-tick" x1="125" y1="85" x2="125" y2="89"/>
+            <line class="rk-tick" x1="169" y1="80" x2="169" y2="89"/>
+            <text class="rk-label" x="0" y="94">GOAL LINE</text>
+            <text class="rk-label" x="75" y="94" text-anchor="middle">BLUE LINE</text>
+            <text class="rk-label" x="100" y="-5.5" text-anchor="middle">CENTER RED LINE</text>
+            <text class="rk-label" x="125" y="94" text-anchor="middle">BLUE LINE</text>
+            <text class="rk-label" x="169" y="94" text-anchor="middle">FACEOFF CIRCLE</text>
+          </svg>
+          <figcaption class="note">An NHL rink is 200 by 85 feet. The blue lines split it into three zones, and the creases in front of each net are painted blue.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section id="basics">
+    <div class="boards" aria-hidden="true"></div>
+
+    <section class="arena" id="draft">
       <div class="wrap">
-        <h2>New to hockey? The short version</h2>
-        <div class="two-col">
+        <p class="eyebrow">Draft room</p>
+        <h2>Snake draft, 6 rounds</h2>
+        <p class="intro">Your draft slot is random. The order reverses every round, so the team that picks last in round 1 picks first in round 2. Every team has to end up with 3 F, 2 D and 1 G.</p>
+
+        <div class="scoreboard" aria-live="polite">
+          <div class="sb-cell"><div class="sb-label">Round</div><div class="sb-value" id="sb-round">-</div></div>
+          <div class="sb-cell"><div class="sb-label">Pick</div><div class="sb-value" id="sb-pick">-</div></div>
+          <div class="sb-cell"><div class="sb-label">Your slot</div><div class="sb-value" id="sb-slot">-</div></div>
+          <div class="sb-cell"><div class="sb-label">On the clock</div><div class="sb-value" id="sb-clock">Waiting to start</div></div>
+        </div>
+
+        <form class="setup" id="setup">
+          <input id="team-name" maxlength="24" placeholder="Name your team" aria-label="Team name" required>
+          <button class="btn" type="submit" id="start-draft">Start the draft</button>
+        </form>
+        <p class="note" id="draft-msg" role="status"></p>
+
+        <div class="room">
+          <div class="pane">
+            <h3>Available players</h3>
+            <div class="filters">
+              <div class="tabs" role="group" aria-label="Filter by position">
+                <button type="button" data-pos="ALL" aria-pressed="true">All</button>
+                <button type="button" data-pos="F" aria-pressed="false">F</button>
+                <button type="button" data-pos="D" aria-pressed="false">D</button>
+                <button type="button" data-pos="G" aria-pressed="false">G</button>
+              </div>
+              <input id="search" type="search" placeholder="Search name or team" aria-label="Search players">
+            </div>
+            <div class="pool scroll">
+              <table>
+                <thead><tr><th>Pos</th><th>Player</th><th>Team</th><th class="num" title="Projected fantasy points per week">Proj</th><th></th></tr></thead>
+                <tbody id="pool-body"></tbody>
+              </table>
+            </div>
+            <p class="note">Proj is the game's projected points per week. It comes from our own player ratings, not official NHL stats.</p>
+          </div>
+
           <div>
-            <h3>Positions</h3>
-            <p><strong>Forwards</strong> (centers and wingers) do most of the scoring. In this game they're your main source of goals and assists.</p>
-            <p><strong>Defensemen</strong> protect their own net and start the attack. The best ones also rack up assists from the blue line, and they block a lot of shots, which counts here.</p>
-            <p><strong>Goalies</strong> stop the puck. A goalie on a strong team picks up wins; a busy goalie on a weaker team makes more saves. Both can score well.</p>
+            <div class="card">
+              <h3 id="card-title">Your lineup card</h3>
+              <div class="sub" id="card-sub">3 F, 2 D, 1 G</div>
+              <div id="card-lines"></div>
+              <div class="card-actions">
+                <button class="btn small" type="button" id="autopick" disabled>Auto-pick for me</button>
+                <button class="btn small ghost" type="button" id="reset">New draft</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="board-wrap">
+          <h3>Draft board</h3>
+          <div class="scroll">
+            <table class="board">
+              <thead id="board-head"></thead>
+              <tbody id="board-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="boards" aria-hidden="true"></div>
+
+    <section class="season" id="season">
+      <div class="wrap">
+        <p class="eyebrow">League</p>
+        <h2>The season</h2>
+        <div id="season-empty" class="empty-state">
+          <p><strong>No season yet.</strong> Finish the draft above and your schedule shows up here.</p>
+          <p>You play each computer team three times over 9 weeks. Each week, every player gets 3 simulated games. The top two teams in the standings then meet in the week 10 final.</p>
+        </div>
+        <div class="season-grid" id="season-grid" hidden>
+          <div>
+            <div class="panel">
+              <h3>Standings</h3>
+              <div class="scroll">
+                <table class="standings">
+                  <thead><tr><th>#</th><th>Team</th><th class="num">W</th><th class="num">L</th><th class="num">T</th><th class="num">PF</th></tr></thead>
+                  <tbody id="standings-body"></tbody>
+                </table>
+              </div>
+              <p class="note">Ties in the standings are broken by total points for (PF).</p>
+            </div>
+            <div class="panel">
+              <h3>Results</h3>
+              <div class="scroll">
+                <table>
+                  <thead><tr><th>Wk</th><th>Opponent</th><th class="num">Score</th></tr></thead>
+                  <tbody id="log-body"></tbody>
+                </table>
+              </div>
+              <p class="note">Click a week to see its box score.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="week-head">
+              <h3 id="week-title">Week 1</h3>
+              <button class="btn" type="button" id="play-week">Play week 1</button>
+            </div>
+            <div id="matchups"></div>
+            <div id="week-detail"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rules" id="rules">
+      <div class="wrap">
+        <p class="eyebrow">Rules</p>
+        <h2>How points work</h2>
+        <div class="rules-grid">
+          <div>
+            <h3>Skaters</h3>
+            <table>
+              <tbody>
+                <tr><td>Goal</td><td class="num">3</td></tr>
+                <tr><td>Assist</td><td class="num">2</td></tr>
+                <tr><td>Shot on goal</td><td class="num">0.5</td></tr>
+                <tr><td>Blocked shot</td><td class="num">0.5</td></tr>
+              </tbody>
+            </table>
+            <h3 style="margin-top:1.2em">Goalies</h3>
+            <table>
+              <tbody>
+                <tr><td>Win</td><td class="num">4</td></tr>
+                <tr><td>Save</td><td class="num">0.2</td></tr>
+                <tr><td>Goal against</td><td class="num">-1</td></tr>
+                <tr><td>Shutout bonus</td><td class="num">3</td></tr>
+              </tbody>
+            </table>
           </div>
           <div>
-            <h3>Quick strategy notes</h3>
-            <p>Paying for one elite forward and filling the rest with mid-priced players usually beats spreading the money evenly.</p>
-            <p>An offensive defenseman can outscore a cheap forward because of the blocked-shot points.</p>
-            <p>Goals against cost a point each, so a cheap goalie can sink a good week. Don't leave yourself $3M for the net.</p>
-            <p>Results are random week to week, like real hockey. Judge your build over the full 10 weeks.</p>
+            <h3>League format</h3>
+            <ul>
+              <li>4 teams: you and three computer GMs.</li>
+              <li>6-round snake draft. Rosters are 3 F, 2 D and 1 G.</li>
+              <li>The computer GMs draft for value and roster need, with a little randomness, so no two drafts go the same way.</li>
+              <li>Weeks 1 to 9 are the regular season. You face each opponent three times.</li>
+              <li>Week 10 is the final between the top two teams.</li>
+              <li>Your league saves in this browser, so you can close the tab and come back later.</li>
+            </ul>
           </div>
+          <div>
+            <h3>Box score terms</h3>
+            <dl class="glossary">
+              <dt>G</dt><dd>Goals</dd>
+              <dt>A</dt><dd>Assists, credited to up to two players on a goal</dd>
+              <dt>SOG</dt><dd>Shots on goal: shots that would have gone in without a save</dd>
+              <dt>BLK</dt><dd>Shots blocked by a skater before they reach the net</dd>
+              <dt>SV</dt><dd>Saves</dd>
+              <dt>GA</dt><dd>Goals against</dd>
+              <dt>SO</dt><dd>Shutout: a win with zero goals allowed</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="callout">
+          <p><strong>About the numbers.</strong> Player ratings and projections in this game are our own estimates, used to balance the draft. They are not official NHL statistics, and weekly results are simulated, not real games. Teams are listed as of the start of the 2025-26 season, so a recent trade may not show yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="basics" id="basics">
+      <div class="wrap">
+        <p class="eyebrow">Hockey 101</p>
+        <h2>New to hockey? Start here</h2>
+        <p style="max-width:46em">Each team has six players on the ice at a time: three forwards, two defensemen and a goalie. That's the same shape as your fantasy roster.</p>
+        <div class="positions">
+          <div>
+            <p class="tag">F / C, LW, RW</p>
+            <h3>Forwards</h3>
+            <p>The center takes faceoffs and covers the middle. The wingers work the sides. Forwards score most of the goals, so they carry most fantasy teams.</p>
+          </div>
+          <div>
+            <p class="tag">D / LD, RD</p>
+            <h3>Defensemen</h3>
+            <p>They protect the net, block shots and move the puck up ice. Puck-moving defensemen like Cale Makar or Quinn Hughes rack up assists too.</p>
+          </div>
+          <div>
+            <p class="tag">G</p>
+            <h3>Goalie</h3>
+            <p>The last line of defense. A goalie on a strong team wins a lot. A goalie on a busy team makes a lot of saves. Both can pay off in fantasy.</p>
+          </div>
+        </div>
+        <div class="tips">
+          <h3>Draft tips</h3>
+          <p>There are only nine goalies in the pool and four teams need one. If two go early, don't wait long.</p>
+          <p>Blocked shots count here, so a shot-blocking defenseman can outscore a forward who doesn't shoot much.</p>
+          <p>Goals against cost a point each. A shaky goalie can sink an otherwise good week.</p>
+          <p>Weekly results are random, the same as real hockey. Judge your draft over the full season, not one week.</p>
         </div>
       </div>
     </section>
@@ -130,8 +286,11 @@
         <a href="terms.html">Terms &amp; Conditions</a>
         <a href="privacy.html">Privacy Policy</a>
       </div>
-      <p>Rink Draft is a fan project. It is not affiliated with or endorsed by the National Hockey League. NHL and team names are trademarks of their respective owners.</p>
+      <p>Rink Draft is a fan project. It is not affiliated with or endorsed by the National Hockey League. NHL, team names and player names belong to their respective owners.</p>
     </div>
   </footer>
+
+  <script src="players.js"></script>
+  <script src="draft.js"></script>
 </body>
 </html>

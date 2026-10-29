@@ -152,8 +152,18 @@
     render();
   }
 
+  // Two clicks to reset, so a stray tap doesn't wipe a season.
+  let resetArmed = null;
   function newSeason() {
-    if (state.results.length && !confirm("Start a new season? Your record resets but your lineup stays.")) return;
+    const btn = $("new-season");
+    if (state.results.length && !resetArmed) {
+      btn.textContent = "Click again to reset record";
+      resetArmed = setTimeout(() => { resetArmed = null; btn.textContent = "New season"; }, 4000);
+      return;
+    }
+    clearTimeout(resetArmed);
+    resetArmed = null;
+    btn.textContent = "New season";
     state = freshState(state.teamName, state.lineup);
     view.shownWeek = null;
     save();
